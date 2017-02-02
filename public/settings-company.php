@@ -298,7 +298,7 @@ Helper::subNavigation();
                     <label for="start-date" class="h3">ACCOUNT NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="acc_name" class="form-control h3">
+                    <input type="text" name="formData[acc_name]" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -306,7 +306,7 @@ Helper::subNavigation();
                     <label for="end-date" class="h3">ACCOUNT NUMBER</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="account_number" class="form-control h3">
+                    <input type="text" name="formData[account_number]" class="form-control h3">
                 </div>
             </div>
 
@@ -315,7 +315,7 @@ Helper::subNavigation();
                     <label for="start-date" class="h3">SORT CODE</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="sort_code" class="form-control h3">
+                    <input type="text" name="formData[sort_code]" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -323,7 +323,7 @@ Helper::subNavigation();
                     <label for="end-date" class="h3">BANK NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="bank_name" class="form-control h3">
+                    <input type="text" name="formData[bank_name]" class="form-control h3">
                 </div>
             </div>
         </div>
@@ -338,7 +338,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">1. &nbsp; NAME</label>
                 </div>
                 <div class="col-xs-12 col-md-7">
-                    <input type="text" name="owner_name[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_name]" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -346,7 +346,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">D.O.B</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_dob[]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
+                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -354,7 +354,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">N.I.N.O</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_ni_no[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
                 </div>
             </div>
 
@@ -363,7 +363,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">2. &nbsp; NAME</label>
                 </div>
                 <div class="col-xs-12 col-md-7">
-                    <input type="text" name="owner_name[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_name]" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -371,7 +371,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">D.O.B</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text"  name="owner_dob[]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
+                    <input type="text"  name="formData[][owner_dob]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -379,14 +379,14 @@ Helper::subNavigation();
                     <label for="name" class="h3">N.I.N.O</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_ni_no[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-4">
                 <div class="col-xs-12 col-md-5"><label for="name" class="h3">3. &nbsp; NAME</label>
                 </div>
-                <div class="col-xs-12 col-md-7"><input name="owner_name[]" type="text" class="form-control h3">
+                <div class="col-xs-12 col-md-7"><input name="formData[][owner_name]" type="text" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -394,7 +394,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">D.O.B</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_dob[]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
+                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -402,7 +402,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">N.I.N.O</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_ni_no[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
                 </div>
             </div>
 
@@ -411,7 +411,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">4. &nbsp; NAME</label>
                 </div>
                 <div class="col-xs-12 col-md-7">
-                    <input type="text" name="owner_name[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_name]" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -419,7 +419,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">D.O.B</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_dob[]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
+                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -427,7 +427,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">N.I.N.O</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_ni_no[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
                 </div>
             </div>
 
@@ -436,7 +436,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">5. &nbsp; NAME</label>
                 </div>
                 <div class="col-xs-12 col-md-7">
-                    <input type="text" name="owner_name[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_name]" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -444,7 +444,7 @@ Helper::subNavigation();
                     <label for="name"  class="h3">D.O.B</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_dob[]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
+                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input" placeholder="dd/mm/yyyy">
                 </div>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -452,7 +452,7 @@ Helper::subNavigation();
                     <label for="name" class="h3">N.I.N.O</label>
                 </div>
                 <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_ni_no[]" class="form-control h3">
+                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
                 </div>
             </div>
         </div>

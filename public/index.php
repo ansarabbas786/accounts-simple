@@ -5,7 +5,6 @@ Helper::css('css/dashboard.css');
 Helper::js('js/dashboard.js');
 Helper::endHead();
 
-
 Helper::body();
 Helper::header();
 Helper::navigation();

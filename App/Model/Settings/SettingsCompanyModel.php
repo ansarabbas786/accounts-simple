@@ -2,18 +2,38 @@
 
 namespace App\Model\Settings;
 
+
+
+use App\Validator\CompanyValidator;
+
 class SettingsCompanyModel
 {
 
     public static function processForm($data)
     {
-        echo $data->name;
+        if (CompanyValidator::validate($data)) {
+            if (self::save($data)) {
+
+            } else {
+                //todo return database errors
+            }
+        } else {
+            //todo return validation errors
+        }
     }
 
-    public function update(array $companyInfo)
+    public static function update($data)
     {
-
+        if (CompanyValidation::validate($data)) {
+            //update all the data here
+        }
     }
+
+    public static function save($data)
+    {
+        //todo implement the save login here
+    }
+
 }
 
 
