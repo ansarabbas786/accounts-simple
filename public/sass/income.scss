@@ -1,0 +1,248 @@
+.hero h1{
+//    margin-top : 75px;
+    font-family : "raleway-semibold";
+}
+
+//main section styling starts here
+//===============================>
+
+.css_table {
+    display: table;
+    width: 150px;
+    margin: 0 auto;
+    .css_table_row {
+        display: table-row;
+        
+        .css_table_cell {
+            
+            display: table-cell;
+            vertical-align: middle;
+            
+            ul.dropdown-menu {
+                min-width: 0;
+            }
+            
+        }
+        
+    }
+    
+}
+
+#ninth {
+    width: 200px;
+}
+
+#create_modal .modal-body {
+    a.btn {
+        min-width: 150px;
+        margin-left: 20px;
+        font-size: 1.3em;
+        position: relative;
+        top: 50px;
+    }
+}
+
+.modal-body {
+    text-align: center;
+    min-height: 150px;
+//    line-height: 150px;
+    
+    button {
+        margin-left: 20px;
+        font-size: 1.3em;
+    }
+    
+    [class*="col-"] {
+        margin-top: 10px;
+        text-align: left;
+    }
+    
+    .modal_buttons {
+        padding-right: 30px;
+    }
+    
+    .modal_buttons button {
+        margin-top: 20px;
+        background-color: #39b54a;
+        border: none;
+    }
+    
+    .btn_container {
+        padding-right: 20px;
+    }
+    
+    .btn_container .btn {
+        position: relative;
+        top: -20px;
+        min-width : 100px;
+        background-color: #39b54a;
+        color: white;
+        border: 0;
+    }
+    
+    .btn_round {
+        width: 40px;
+        height: 40px;
+        line-height: 25px;
+        border-radius: 50%;
+        font-size :2.5em;
+        position: relative;
+        top: -30px;
+    }
+    
+    .table-responsive {
+        margin-bottom: 40px;
+    }
+    
+    .table {
+        margin-top: 30px;
+        margin-bottom: 80px;
+        
+        thead {
+            background-color: #333;
+            color: white;
+        }
+        
+        thead th {
+            text-align: center;
+        }
+        
+        
+        #first {
+            width: 150px;
+        }
+        
+        #third {
+            width: 150px;
+        }
+        
+        #second,#fourth,#fifth,#sixth,#seventh,#eightth {
+            width: 100px;
+        }
+        
+        thead th:nth-of-type(2),
+        tbody td:nth-of-type(2) {
+//            width: 150px !important;
+        }
+        
+    }
+    
+}
+
+
+
+main{
+    .btn_container{
+        min-height : 150px;
+        .btn{
+            min-width: 150px;
+            border-radius : 0px;
+            padding : 15px 30px;
+            background-color : #4484ce;
+            font-size : 1.2em;
+            margin :45px 0 20px 20px;
+            border-color : #4484ce;
+        }
+        
+    }
+    
+    
+
+    .highlights{
+        background-color: #39b54a;
+        height: 50px;
+        line-height: 50px;
+        color: white;
+        font-weight: bold;
+        font-size: 2em;
+    }
+    
+    //table styling starts here
+    //===========================>
+    
+    table{
+        max-width : 1130px;
+        margin : 0 auto;
+        margin-top : 50px;
+        margin-bottom : 100px;
+        thead{
+            background-color : #333;
+            color : white;
+            th{
+                border : 1px solid gray;
+            }
+        }
+        td{
+        border : 1px solid black;
+        }
+    }
+}
+
+
+#enter_modal .table {
+    width: 1040px;
+}
+
+@media (min-width: 1050px)
+{
+    #enter_modal .modal-dialog {
+        width: 1050px;
+    }
+}
+
+@media(max-width: 1050px) {
+    #enter_modal .modal-dialog {
+        width: 950px;
+    }
+}
+
+@media(max-width: 955px) {
+    #enter_modal .modal-dialog {
+        width: 100%;
+    }
+}
+
+
+
+@media (max-width : 910px){
+    nav{
+        font-size : 0.8em;
+    }
+    .btn_container button:first-of-type{
+        margin-left : 25px;
+    }
+}
+
+@media (max-width : 770px){
+    main .row:first-of-type{
+        text-align : center;
+        
+    }
+    .btn_container button:first-of-type{
+        margin-left : 30px;
+    }
+}
+
+@media (max-width : 768px){
+    .btn_container .btn{
+        width : 150px !important;
+    }
+}
+
+@media (max-width : 445px){
+    main .highlights{
+        font-size : 1.2em;
+    }
+}
+
+@media (max-width : 385px){
+    footer{
+        font-size : 0.8em;
+    }
+}
+
+@media (max-width : 315px){
+    footer{
+        font-size : 0.6em;
+    }
+}

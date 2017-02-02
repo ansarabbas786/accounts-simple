@@ -1,0 +1,472 @@
+main .shortcuts{
+    min-height : 300px;
+}    
+.custom_container{
+    padding : 70px 40px;;
+}
+main{
+    a.special{
+        display : block;
+        text-decoration : none;
+        margin: 10px auto;
+        color: white;
+        width : 120px;
+        height : 100px;
+        line-height : 50px;
+        background-color : #4484ce;
+        font-size : .8em;
+        font-weight : 600;
+        padding : 10px;
+        letter-spacing : 0.5px;
+        div{
+            width : 50px;
+            height : 50px;
+            border: 2px solid white;
+            border-radius : 50%;
+            margin : 0 auto;
+            i{
+                font-size : 20px !important;
+            }
+        }
+    }
+    .date_container{
+        display : block;
+        vertical-align: middle;
+        text-decoration : none;
+        margin: 10px auto;
+        text-align: center;
+        color: black;
+        width : 120px;
+        height : 100px;
+        border : 1px solid black;
+        font-size : 0.8em;
+        font-weight : bold;
+        letter-spacing : 0.5px;
+        position : relative;
+//        padding-left : 5px;
+        .date{
+            height : 40px;
+            font-size: 1.2em;
+            position : absolute;
+            width: 100%;
+            top : 50%;
+            margin-top : -20px;
+            text-align : center;
+            padding-left: 10px;
+        }
+    }
+    .highlights{
+        background-color : #39b54a;
+        height : 50px;
+        line-height : 50px;
+        color : white;
+        font-weight : bold;
+        font-size : 2em;
+    }
+    
+    
+    .table-responsive{
+        border : none;
+    }
+    .table{
+        border : 2px solid black;
+        font-size : 1.5em;
+        max-width : 300px;
+        margin : 0 auto;
+        margin-top : 40px;
+        margin-bottom : 40px;
+        font-family: "raleway-semibold";
+        caption{
+            background-color : #333333;
+            color : white;
+            font-size : 1.2em;
+        }
+        thead tr th,
+        tbody tr{
+            border-bottom : 2px solid black;
+        }
+    }
+    
+    ul.nav-pills{
+        font-size : 1.5em;
+    }
+}
+main a:hover{
+    color : lightgray;
+    text-decoration : none;
+    div{
+        border-color : lightgray;
+    }
+}
+
+.nav-justified li a{
+    color : black;
+}
+
+.nav-justified li a:hover{
+    color : white;
+    background-color : #4484ce;
+}
+
+
+
+.modal-body {
+//    line-height: 150px;
+    text-align: center;
+    min-height: 150px;
+    //    line-height: 150px;
+
+    button {
+        margin-left: 20px;
+        font-size: 1.3em;
+    }
+
+    [class*="col-"] {
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .modal_buttons {
+        padding-right: 30px;
+    }
+
+    .modal_buttons button {
+        margin-top: 20px;
+        background-color: #39b54a;
+        border: none;
+    }
+    
+    .btn_container {
+        padding-right: 20px;
+    }
+
+    .btn_container .btn {
+        position: relative;
+        top: -20px;
+        min-width : 100px;
+        background-color: #39b54a;
+        color: white;
+        border: 0;
+    }
+
+    .btn_round {
+        width: 40px;
+        height: 40px;
+        line-height: 25px;
+        border-radius: 50%;
+        font-size :2.5em;
+        position: relative;
+        top: -30px;
+    }
+
+}
+
+
+/*expense modal styling starts here
+=======================================*/
+
+#new_expense_modal {
+    
+    
+    .table-responsive {
+        margin-bottom: 60px;
+    }
+    
+    .table {
+        margin-top: 30px;
+        margin-bottom: 100px;
+        
+        thead {
+            background-color: #333;
+            color: white;
+        }
+
+        thead th {
+            text-align: center;
+        }
+
+
+        #first {
+            width: 150px;
+        }
+
+        #second {
+            width: 150px;
+        }
+
+        #third {
+            width: 100px;
+        }
+
+        #seventh,#eightth,#ninth {
+            width: 120px;
+        }
+
+        #fourth {
+            width: 70px;
+        }
+
+        #fifth,#sixth {
+            width: 150px;
+        }
+
+        thead th:nth-of-type(2),
+        tbody td:nth-of-type(2) {
+            //            width: 150px !important;
+        }
+
+    }
+        
+}
+
+/*expense modal styling ends here
+=====================================*/
+
+
+
+
+/*new payment and new receipt modal starts here
+=================================================*/
+
+#new_payment_modal,  
+#new_receipt_modal,  {
+    
+    
+    .table-responsive {
+        margin-bottom: 35px;
+    }
+    
+    .table {
+    margin-top: 30px;
+    margin-bottom: 80px;
+
+    thead {
+        background-color: #333;
+        color: white;
+    }
+
+    thead th {
+        text-align: center;
+    }
+
+
+    #first {
+        width: 150px;
+    }
+
+    #second {
+        width: 150px;
+    }
+
+    #seventh {
+        width: 150px;
+    }
+
+    #third {
+        width: 100px;
+    }
+
+    #eightth,#ninth,#tenth {
+        width: 100px;
+    }
+
+    #fourth {
+        width: 70px;
+    }
+
+    #fifth,#sixth {
+        width: 150px;
+    }
+
+    thead th:nth-of-type(2),
+    tbody td:nth-of-type(2) {
+        //            width: 150px !important;
+    }
+
+}
+}
+
+/*new payment and new receipt modal ends here
+===============================================*/
+
+
+#payroll_run_modal {
+    
+    .table-responsive{
+        margin: 0 auto;
+//        margin-bottom : 200px;
+    }
+    table{
+        font-family : "raleway-semibold";
+        width: 90% !important;
+        //        max-width : 190px;
+        margin : 0 auto;
+        margin-top : 100px;
+        thead{
+            background-color : #333;
+            color : white;
+            th{
+                text-align: center;
+                border-left : 1px solid #c1b5b5;
+                padding: 10px;
+            }
+        }
+        td{
+            border : 1px solid black;
+            padding: 10px;
+            .btn{
+                border-radius: 0;
+                margin: 2px 0;
+                font-family: "raleway-semibold";
+                font-size: 1em;
+            }
+        }
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#new_payment_modal .table ,
+#new_receipt_modal .table,
+#new_expense_modal .table {
+    width: 1040px;
+}
+
+
+
+/*new expense modal box styling*/
+//@media (min-width: 972px)
+//{
+//    #new_expense_modal .modal-dialog {
+//        width: 950px;
+//    }
+//}
+//
+//@media(max-width: 972px) {
+//    #new_expense_modal .modal-dialog {
+//        width: 850px;
+//    }
+//}
+//
+//@media(max-width: 872px) {
+//    #new_expense_modal .modal-dialog {
+//        width: 100%;
+//    }
+//}
+
+/*new expense modal box styling*/
+
+
+
+
+
+/*new payment and new receipt modal box styling*/
+@media (min-width: 1050px)
+{
+    #new_payment_modal .modal-dialog ,
+    #new_receipt_modal .modal-dialog ,
+    #new_expense_modal .modal-dialog {
+        width: 1050px;
+    }
+}
+
+@media(max-width: 1050px) {
+    #new_payment_modal .modal-dialog ,
+    #new_receipt_modal .modal-dialog ,
+    #new_expense_modal .modal-dialog {
+        width: 950px;
+    }
+}
+
+@media(max-width: 955px) {
+    #new_payment_modal .modal-dialog ,
+    #new_receipt_modal .modal-dialog ,
+    #new_expense_modal .modal-dialog {
+        width: 100%;
+    }
+}
+
+/*new payment and new receipt modal box styling*/
+
+
+
+
+
+@media (min-width: 900px){
+    #payroll_run_modal .modal-dialog{
+        width : 850px !important;
+    }
+
+}
+
+@media (max-width : 900px){
+    #payroll_run_modal .modal-dialog{
+        width : 700px;
+    }
+
+}
+
+
+@media (max-width : 768px){
+    #payroll_run_modal .modal-dialog{
+        width : 100%;
+    }
+
+}
+
+
+
+
+@media (max-width : 1200px){
+    main .date{
+        font-size : 0.9em;
+        margin-top : 50%;
+        max-width : 100px;
+    }
+}
+    .custom_container a{
+        margin-bottom : 20px;
+    }
+
+@media (max-width : 995px){
+    main{
+        text-align : center;
+    }
+}
+//@media (max-width : 770px){
+//    .date{
+////        position : absolute;
+//    }
+//}
+@media (max-width : 370px){
+     main .highlights{
+        font-size : 1.3em;
+    }
+    footer {
+        font-size : 0.8em;
+    }
+}
+@media (max-width : 280px){
+    footer{
+        font-size : 0.5em;
+    }
+}
+@media (max-width : 910px){
+    nav {
+        font-size : 0.8em; 
+    }
+}

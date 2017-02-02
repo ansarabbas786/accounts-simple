@@ -1,0 +1,277 @@
+.btn{
+    border-radius : 0;
+}
+
+.css_table {
+    display: table;
+    width: 150px;
+    margin: 0 auto;
+    .css_table_row {
+        display: table-row;
+
+        .css_table_cell {
+
+            display: table-cell;
+            vertical-align: middle;
+
+            ul.dropdown-menu {
+                min-width: 0;
+            }
+
+        }
+
+    }
+
+}
+
+#edit_modal,
+#confirm_modal{
+    [class*="col-"] {
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .modal_buttons {
+        padding-right: 30px;
+        margin-top: 15px;
+    }
+
+    .modal_buttons button {
+        //            margin-top: 20px;
+        //            margin-top: 20px;
+        background-color: #39b54a;
+        border: none;
+    }
+}
+
+
+
+.buttons>.btn_container {
+    min-height: 150px;
+}
+main{
+    .btn_container{
+//        min-height: 150px;
+    .btn{
+            min-width: 150px;
+            border-radius : 0px;
+            padding : 15px 30px;
+            background-color : #4484ce;
+            font-size : 1.2em;
+            margin :45px 0 20px 20px;
+            border-color : #4484ce;
+        }
+    }
+     
+    .highlights{
+        background-color : #39b54a;
+        height : 50px;
+        line-height : 50px;
+        color : white;
+        font-family: "raleway-semibold";
+        font-size : 2em;
+    }
+    .table-responsive{
+//        padding: 50px 0 0px 0;
+        margin-bottom: 40px;
+        .table{
+            max-width: 1030px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        th{
+            background-color : #333 !important;
+            color : white;
+            padding : 10px 20px;
+        }
+        
+    }
+    .modal-header{
+        background-color: #39b54a;
+        color: black;
+    }
+    
+    
+    //main section styling starts here
+    //===============================>
+
+    #create_modal .modal-body {
+//        line-height: 150px;
+    }
+
+    .modal-body {
+        
+        .btn_container {
+            
+            .btn {
+                margin :0 0 20px 20px;
+            }
+        }
+        
+        text-align: center;
+        min-height: 150px;
+        //    line-height: 150px;
+
+        button {
+            margin-left: 20px;
+            font-size: 1.3em;
+        }
+
+        [class*="col-"] {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .modal_buttons {
+            padding-right: 30px;
+            margin-top: 15px;
+        }
+
+        .modal_buttons button {
+//            margin-top: 20px;
+//            margin-top: 20px;
+            background-color: #39b54a;
+            border: none;
+        }
+
+        .btn_container {
+            padding-right: 20px;
+        }
+
+        .btn_container .btn {
+            position: relative;
+            top: -20px;
+            min-width : 100px;
+            background-color: #39b54a;
+            color: white;
+            border: 0;
+        }
+
+        .btn_round {
+            width: 40px;
+            height: 40px;
+            line-height: 25px;
+            border-radius: 50%;
+            font-size :2.5em;
+            position: relative;
+            top: -30px;
+        }
+
+        .table {
+            margin-top: 30px;
+            margin-bottom: 80px;
+
+            thead {
+                background-color: #333;
+                color: white;
+            }
+
+            thead th {
+                text-align: center;
+            }
+
+
+            #first {
+                width: 150px;
+            }
+
+            #second {
+                width: 150px;
+            }
+            
+            #third {
+                width: 100px;
+            }
+
+            #seventh,#eightth,#ninth {
+                width: 120px;
+            }
+            
+            #fourth {
+                width: 70px;
+            }
+            
+            #fifth,#sixth {
+                width: 150px;
+            }
+
+            thead th:nth-of-type(2),
+            tbody td:nth-of-type(2) {
+                //            width: 150px !important;
+            }
+
+        }
+
+    }
+
+}
+
+#enter_modal .table {
+    width: 1040px;
+}
+
+@media (min-width: 1050px)
+{
+    #enter_modal .modal-dialog {
+        width: 1050px;
+    }
+}
+
+@media(max-width: 1050px) {
+    #enter_modal .modal-dialog {
+        width: 950px;
+    }
+}
+
+@media(max-width: 955px) {
+    #enter_modal .modal-dialog {
+        width: 100%;
+    }
+}
+
+
+
+@media (max-width : 995px){
+    main{
+//        text-align : center;
+        .highlights{
+        height : 50px;
+        line-height : 50px;
+    }
+    }
+    
+}
+@media (max-width : 495px){
+    
+    .buttons{
+            text-align: center;
+        }
+}
+@media (max-width : 456px){
+    main{
+//        text-align : center;
+        .highlights{
+        height : 100px;
+        line-height : 50px;
+    }
+    }
+    
+}
+@media (max-width : 345px){
+    footer{
+        height : 80px;
+        line-height : 40px;
+//        background-color : #333333;
+//        color : white;
+    }
+}
+@media (max-width : 282px){
+    main{
+//        text-align : center;
+        .highlights{
+        height : 150px;
+        line-height : 50px;
+    }
+    }
+    
+}

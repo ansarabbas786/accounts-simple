@@ -1,0 +1,299 @@
+
+.top_offset {
+    position: relative;
+    top: 7px;
+}
+
+.buttons>.btn_container {
+    min-height: 150px;
+}
+main{
+    
+    
+    
+    .btn_container{
+        .btn{
+            min-width: 150px;
+            border-radius : 0px;
+            padding : 15px 30px;
+            background-color : #4484ce;
+            font-size : 1.2em;
+            margin :45px 0 20px 20px;
+            border-color : #4484ce;
+        }
+    }
+    
+    #select_bank_dropdown 
+    {
+        position: relative;
+        top: 25px;
+    }
+    
+    
+    .select_bank {
+        text-align: left;
+//        padding-left: 20px;
+//        margin-left:10px;
+        
+        [class*="col-"] {
+            margin-top: 10px;
+        }
+    }
+    label.special_label{
+        max-width: 150px;
+        margin-top : 20px;
+        background-color : #4484ce;
+        padding : 15px 10px;
+        color : white !important;
+        font-family: "raleway-semibold" !important;
+        font-size : 1em !important;
+    }
+    .highlights{
+        background-color : #39b54a;
+        height : 50px;
+        line-height : 50px;
+        color : white;
+        font-family: "raleway-semibold";
+        font-size : 2em;
+    }
+    
+    .balance{
+        padding-top: 50px;
+        .col-xs-12{
+            margin: 30px 0;
+            input{
+                border: 1px solid black;
+                border-radius: 0;
+            }
+        }
+        .col-xs-6 .btn{
+            margin: 30px 0;
+            background-color: black;
+            color: white;
+            border-radius: 0;
+            
+        }
+    }
+    .table{
+        margin: 40px 0 150px 0px;
+        thead{
+            th{
+                background-color: #333333;
+                color: white;
+            }
+        }
+        tbody{
+            td{
+                border: 1px solid black;
+                button{
+                    width: 120px;
+                    margin: 0 auto;
+                    
+                }
+                .btn-warning{
+                    background-color: #fcee21;
+                    color:black;
+                    border: none !important;
+                    border-radius: 0;
+                }
+                .btn-primary{
+                    background-color: #3498db;
+                    color:black;
+                    border: none !important;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+    
+    
+}
+
+
+//main section styling starts here
+//===============================>
+
+#create_modal .modal-body {
+    line-height: 150px;
+}
+
+.modal-body {
+    text-align: center;
+    min-height: 150px;
+    //    line-height: 150px;
+
+    button {
+        margin-left: 20px;
+        font-size: 1.3em;
+    }
+
+    [class*="col-"] {
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .modal_buttons {
+        padding-right: 30px;
+    }
+
+    .modal_buttons button {
+        margin-top: 20px;
+        background-color: #39b54a;
+        border: none;
+    }
+
+    .btn_container {
+        padding-right: 20px;
+    }
+
+    .btn_container .btn {
+        position: relative;
+        top: -20px;
+        min-width : 100px;
+        background-color: #39b54a;
+        color: white;
+        border: 0;
+    }
+
+    .btn_round {
+        width: 40px;
+        height: 40px;
+        line-height: 25px;
+        border-radius: 50%;
+        font-size :2.5em;
+        position: relative;
+        top: -30px;
+    }
+
+    .table-responsive {
+        margin-bottom: 35px;
+    }
+    
+    .table {
+        margin-top: 30px;
+        margin-bottom: 80px;
+
+        thead {
+            background-color: #333;
+            color: white;
+        }
+
+        thead th {
+            text-align: center;
+        }
+
+
+        #first {
+            width: 150px;
+        }
+
+        #second {
+            width: 150px;
+        }
+        
+        #seventh {
+            width: 150px;
+        }
+
+        #third {
+            width: 100px;
+        }
+
+        #eightth,#ninth,#tenth {
+            width: 120px;
+        }
+
+        #fourth {
+            width: 70px;
+        }
+
+        #fifth,#sixth {
+            width: 150px;
+        }
+
+        thead th:nth-of-type(2),
+        tbody td:nth-of-type(2) {
+            //            width: 150px !important;
+        }
+
+    }
+
+}
+
+
+
+#enter_modal .table {
+    width: 1040px;
+}
+
+@media (min-width: 1050px)
+{
+    #enter_modal .modal-dialog {
+        width: 1050px;
+    }
+}
+
+@media(max-width: 1050px) {
+    #enter_modal .modal-dialog {
+        width: 950px;
+    }
+}
+
+@media(max-width: 955px) {
+    #enter_modal .modal-dialog {
+        width: 100%;
+    }
+}
+
+
+@media (max-width : 1199px){
+    .select-bank-parent{
+        max-width: 280px !important;
+    }
+}
+
+@media (max-width : 995px){
+    main{
+//        text-align : center;
+        .highlights{
+        height : 50px;
+        line-height : 50px;
+    }
+    }
+}
+
+@media (max-width : 991px){
+    .select-bank-parent {
+        max-width: 230px !important;
+    }
+}
+
+@media (max-width : 767px){
+    .select-bank-parent {
+        max-width: 360px !important;
+    }
+}
+
+@media (max-width : 495px){
+    
+    .buttons{
+            text-align: center;
+        }
+}
+@media (max-width : 456px){
+    main{
+        .highlights{
+        height : 50px;
+        line-height : 50px;
+    }
+    }
+}
+@media (max-width : 320px){
+    main{
+//        text-align : center;
+        .highlights{
+        height : 100px;
+        line-height : 50px;
+    }
+    }
+}

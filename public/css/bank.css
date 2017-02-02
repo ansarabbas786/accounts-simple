@@ -1,0 +1,168 @@
+.top_offset {
+  position: relative;
+  top: 7px; }
+
+.buttons > .btn_container {
+  min-height: 150px; }
+
+main .btn_container .btn {
+  min-width: 150px;
+  border-radius: 0px;
+  padding: 15px 30px;
+  background-color: #4484ce;
+  font-size: 1.2em;
+  margin: 45px 0 20px 20px;
+  border-color: #4484ce; }
+main #select_bank_dropdown {
+  position: relative;
+  top: 25px; }
+main .select_bank {
+  text-align: left; }
+  main .select_bank [class*="col-"] {
+    margin-top: 10px; }
+main label.special_label {
+  max-width: 150px;
+  margin-top: 20px;
+  background-color: #4484ce;
+  padding: 15px 10px;
+  color: white !important;
+  font-family: "raleway-semibold" !important;
+  font-size: 1em !important; }
+main .highlights {
+  background-color: #39b54a;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-family: "raleway-semibold";
+  font-size: 2em; }
+main .balance {
+  padding-top: 50px; }
+  main .balance .col-xs-12 {
+    margin: 30px 0; }
+    main .balance .col-xs-12 input {
+      border: 1px solid black;
+      border-radius: 0; }
+  main .balance .col-xs-6 .btn {
+    margin: 30px 0;
+    background-color: black;
+    color: white;
+    border-radius: 0; }
+main .table {
+  margin: 40px 0 150px 0px; }
+  main .table thead th {
+    background-color: #333333;
+    color: white; }
+  main .table tbody td {
+    border: 1px solid black; }
+    main .table tbody td button {
+      width: 120px;
+      margin: 0 auto; }
+    main .table tbody td .btn-warning {
+      background-color: #fcee21;
+      color: black;
+      border: none !important;
+      border-radius: 0; }
+    main .table tbody td .btn-primary {
+      background-color: #3498db;
+      color: black;
+      border: none !important;
+      border-radius: 0; }
+
+#create_modal .modal-body {
+  line-height: 150px; }
+
+.modal-body {
+  text-align: center;
+  min-height: 150px; }
+  .modal-body button {
+    margin-left: 20px;
+    font-size: 1.3em; }
+  .modal-body [class*="col-"] {
+    margin-top: 10px;
+    text-align: left; }
+  .modal-body .modal_buttons {
+    padding-right: 30px; }
+  .modal-body .modal_buttons button {
+    margin-top: 20px;
+    background-color: #39b54a;
+    border: none; }
+  .modal-body .btn_container {
+    padding-right: 20px; }
+  .modal-body .btn_container .btn {
+    position: relative;
+    top: -20px;
+    min-width: 100px;
+    background-color: #39b54a;
+    color: white;
+    border: 0; }
+  .modal-body .btn_round {
+    width: 40px;
+    height: 40px;
+    line-height: 25px;
+    border-radius: 50%;
+    font-size: 2.5em;
+    position: relative;
+    top: -30px; }
+  .modal-body .table-responsive {
+    margin-bottom: 35px; }
+  .modal-body .table {
+    margin-top: 30px;
+    margin-bottom: 80px; }
+    .modal-body .table thead {
+      background-color: #333;
+      color: white; }
+    .modal-body .table thead th {
+      text-align: center; }
+    .modal-body .table #first {
+      width: 150px; }
+    .modal-body .table #second {
+      width: 150px; }
+    .modal-body .table #seventh {
+      width: 150px; }
+    .modal-body .table #third {
+      width: 100px; }
+    .modal-body .table #eightth, .modal-body .table #ninth, .modal-body .table #tenth {
+      width: 120px; }
+    .modal-body .table #fourth {
+      width: 70px; }
+    .modal-body .table #fifth, .modal-body .table #sixth {
+      width: 150px; }
+
+#enter_modal .table {
+  width: 1040px; }
+
+@media (min-width: 1050px) {
+  #enter_modal .modal-dialog {
+    width: 1050px; } }
+@media (max-width: 1050px) {
+  #enter_modal .modal-dialog {
+    width: 950px; } }
+@media (max-width: 955px) {
+  #enter_modal .modal-dialog {
+    width: 100%; } }
+@media (max-width: 1199px) {
+  .select-bank-parent {
+    max-width: 280px !important; } }
+@media (max-width: 995px) {
+  main .highlights {
+    height: 50px;
+    line-height: 50px; } }
+@media (max-width: 991px) {
+  .select-bank-parent {
+    max-width: 230px !important; } }
+@media (max-width: 767px) {
+  .select-bank-parent {
+    max-width: 360px !important; } }
+@media (max-width: 495px) {
+  .buttons {
+    text-align: center; } }
+@media (max-width: 456px) {
+  main .highlights {
+    height: 50px;
+    line-height: 50px; } }
+@media (max-width: 320px) {
+  main .highlights {
+    height: 100px;
+    line-height: 50px; } }
+
+/*# sourceMappingURL=bank.css.map */

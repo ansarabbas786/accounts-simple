@@ -1,0 +1,142 @@
+.hero h1 {
+  font-family: "raleway-semibold"; }
+
+.css_table {
+  display: table;
+  width: 150px;
+  margin: 0 auto; }
+  .css_table .css_table_row {
+    display: table-row; }
+    .css_table .css_table_row .css_table_cell {
+      display: table-cell;
+      vertical-align: middle; }
+      .css_table .css_table_row .css_table_cell ul.dropdown-menu {
+        min-width: 0; }
+
+#ninth {
+  width: 200px; }
+
+#create_modal .modal-body a.btn {
+  min-width: 150px;
+  margin-left: 20px;
+  font-size: 1.3em;
+  position: relative;
+  top: 50px; }
+
+.modal-body {
+  text-align: center;
+  min-height: 150px; }
+  .modal-body button {
+    margin-left: 20px;
+    font-size: 1.3em; }
+  .modal-body [class*="col-"] {
+    margin-top: 10px;
+    text-align: left; }
+  .modal-body .modal_buttons {
+    padding-right: 30px; }
+  .modal-body .modal_buttons button {
+    margin-top: 20px;
+    background-color: #39b54a;
+    border: none; }
+  .modal-body .btn_container {
+    padding-right: 20px; }
+  .modal-body .btn_container .btn {
+    position: relative;
+    top: -20px;
+    min-width: 100px;
+    background-color: #39b54a;
+    color: white;
+    border: 0; }
+  .modal-body .btn_round {
+    width: 40px;
+    height: 40px;
+    line-height: 25px;
+    border-radius: 50%;
+    font-size: 2.5em;
+    position: relative;
+    top: -30px; }
+  .modal-body .table-responsive {
+    margin-bottom: 40px; }
+  .modal-body .table {
+    margin-top: 30px;
+    margin-bottom: 80px; }
+    .modal-body .table thead {
+      background-color: #333;
+      color: white; }
+    .modal-body .table thead th {
+      text-align: center; }
+    .modal-body .table #first {
+      width: 150px; }
+    .modal-body .table #third {
+      width: 150px; }
+    .modal-body .table #second, .modal-body .table #fourth, .modal-body .table #fifth, .modal-body .table #sixth, .modal-body .table #seventh, .modal-body .table #eightth {
+      width: 100px; }
+
+main .btn_container {
+  min-height: 150px; }
+  main .btn_container .btn {
+    min-width: 150px;
+    border-radius: 0px;
+    padding: 15px 30px;
+    background-color: #4484ce;
+    font-size: 1.2em;
+    margin: 45px 0 20px 20px;
+    border-color: #4484ce; }
+main .highlights {
+  background-color: #39b54a;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 2em; }
+main table {
+  max-width: 1130px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 100px; }
+  main table thead {
+    background-color: #333;
+    color: white; }
+    main table thead th {
+      border: 1px solid gray; }
+  main table td {
+    border: 1px solid black; }
+
+#enter_modal .table {
+  width: 1040px; }
+
+@media (min-width: 1050px) {
+  #enter_modal .modal-dialog {
+    width: 1050px; } }
+@media (max-width: 1050px) {
+  #enter_modal .modal-dialog {
+    width: 950px; } }
+@media (max-width: 955px) {
+  #enter_modal .modal-dialog {
+    width: 100%; } }
+@media (max-width: 910px) {
+  nav {
+    font-size: 0.8em; }
+
+  .btn_container button:first-of-type {
+    margin-left: 25px; } }
+@media (max-width: 770px) {
+  main .row:first-of-type {
+    text-align: center; }
+
+  .btn_container button:first-of-type {
+    margin-left: 30px; } }
+@media (max-width: 768px) {
+  .btn_container .btn {
+    width: 150px !important; } }
+@media (max-width: 445px) {
+  main .highlights {
+    font-size: 1.2em; } }
+@media (max-width: 385px) {
+  footer {
+    font-size: 0.8em; } }
+@media (max-width: 315px) {
+  footer {
+    font-size: 0.6em; } }
+
+/*# sourceMappingURL=income.css.map */
