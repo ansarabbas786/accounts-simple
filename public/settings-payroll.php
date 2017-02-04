@@ -1,5 +1,27 @@
 <?php
+use App\Model\Settings\SettingsPayrollModel;
+
 require_once "../vendor/autoload.php";
+
+
+if(isset($_POST['save'])){
+    $data = (object) $_POST['formData'];
+
+    SettingsPayrollModel::processForm($data, 'save');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 Helper::head();
 Helper::css('css/settings_payroll.css');
 Helper::js('js/settings/settings-payroll.js');
@@ -111,7 +133,7 @@ Helper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -119,7 +141,7 @@ Helper::subNavigation();
                                 <label for="surname">SURNAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="surname" name="surname">
+                                <input type="text" class="form-control" id="surname" name="formData[surname]">
                             </div>
 
                         </div>
@@ -131,7 +153,7 @@ Helper::subNavigation();
                                 <label for="forname">FORNAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="forname" name="forname">
+                                <input type="text" class="form-control" id="forname" name="formData[forname]">
                             </div>
                         </div>
                     </div>
@@ -147,7 +169,7 @@ Helper::subNavigation();
                             </div>
                             <div class="col-xs-7">
 
-                                <input type="text" class="form-control date_input" name="date_of_birth" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="formData[dob]" placeholder="dd/mm/yyyy">
                             </div>
 
                         </div>
@@ -163,11 +185,11 @@ Helper::subNavigation();
 
 
                                 <label for="mail" class="radio_label">MALE
-                                    <input type="radio" class="" id="mail" name="vat_registered">
+                                    <input type="radio" class="" value="m" id="mail" name="formData[gender]">
                                 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <label for="femail" class="radio_label">FEMALE
-                                    <input type="radio" class="" id="femail" name="vat_registered">
+                                    <input type="radio" class="" id="femail" value="f" name="formData[gender]">
                                 </label>
 
                             </div>
@@ -186,7 +208,7 @@ Helper::subNavigation();
                                 <label for="line1">LINE 1</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="line1" name="line1">
+                                <input type="text" class="form-control" id="line1" name="formData[line1]">
                             </div>
 
                         </div>
@@ -198,7 +220,7 @@ Helper::subNavigation();
                                 <label for="line2">LINE 2</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="line2" name="line2">
+                                <input type="text" class="form-control" id="line2" name="formData[line2]">
                             </div>
                         </div>
                     </div>
@@ -213,7 +235,7 @@ Helper::subNavigation();
                                 <label for="town">TOWN</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="town" name="town">
+                                <input type="text" class="form-control" id="town" name="formData[town]">
                             </div>
 
                         </div>
@@ -225,7 +247,7 @@ Helper::subNavigation();
                                 <label for="city">CITY</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="city" name="city">
+                                <input type="text" class="form-control" id="city" name="formData[city]">
                             </div>
                         </div>
                     </div>
@@ -241,7 +263,7 @@ Helper::subNavigation();
                                 <label for="post_code">POSTCODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="post_code" name="post_code">
+                                <input type="text" class="form-control" id="post_code" name="formData[post_code]">
                             </div>
 
                         </div>
@@ -253,7 +275,7 @@ Helper::subNavigation();
                                 <label for="telephone">TELEPHONE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="telephone" name="telephone">
+                                <input type="text" class="form-control" id="telephone" name="formData[telephone]">
                             </div>
                         </div>
                     </div>
@@ -267,7 +289,7 @@ Helper::subNavigation();
                                 <label for="email">EMAIL</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="formData[email]">
                             </div>
 
                         </div>
@@ -286,7 +308,7 @@ Helper::subNavigation();
                                 <label for="ni_number">NI NUMBER</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="ni_number" name="ni_number">
+                                <input type="text" class="form-control" id="ni_number" name="formData[ni_number]">
                             </div>
 
                         </div>
@@ -298,7 +320,7 @@ Helper::subNavigation();
                                 <label for="start_date">START DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="start_date" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="formData[start_date]" placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
@@ -312,7 +334,7 @@ Helper::subNavigation();
                                 <label for="leaving_date">LEAVING DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="leaving_date" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="formData[leaving_date]" placeholder="dd/mm/yyyy">
                             </div>
 
                         </div>
@@ -324,7 +346,7 @@ Helper::subNavigation();
                                 <label for="reference">REFERENCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="reference" name="reference">
+                                <input type="text" class="form-control" id="reference" name="formData[reference]">
                             </div>
                         </div>
                     </div>
@@ -338,7 +360,7 @@ Helper::subNavigation();
                                 <label for="notes">NOTES</label>
                             </div>
                             <div class="col-xs-7 col-sm-10">
-                                <textarea name="notes" id="notes" class="form-control"></textarea>
+                                <textarea name="formData[notes]" id="notes" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -356,7 +378,7 @@ Helper::subNavigation();
                                 <label for="bank_name">BANK NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="bank_name" name="bank_name">
+                                <input type="text" class="form-control" id="bank_name" name="formData[bank_name]">
                             </div>
 
                         </div>
@@ -368,7 +390,7 @@ Helper::subNavigation();
                                 <label for="account_number">ACCOUNT NUMBER</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_number" name="account_number">
+                                <input type="text" class="form-control" id="account_number" name="formData[acc_number]">
                             </div>
                         </div>
                     </div>
@@ -384,7 +406,7 @@ Helper::subNavigation();
                                 <label for="sort_code">SORT CODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="sort_code" name="sort_code">
+                                <input type="text" class="form-control" id="sort_code" name="formData[sort_code]">
                             </div>
 
                         </div>
@@ -396,14 +418,14 @@ Helper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="account_name">
+                                <input type="text" class="form-control" id="account_name" name="formData[acc_name]">
                             </div>
                         </div>
                     </div>
                     <!--11th row ends here-->
                     <div class="clearfix"></div>
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" class="btn btn-primary">ADD</button>
+                        <button type="submit" class="btn btn-primary" name="save">ADD</button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 

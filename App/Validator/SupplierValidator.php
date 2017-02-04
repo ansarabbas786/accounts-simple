@@ -2,10 +2,8 @@
 
 namespace App\Validator;
 
-use App\Validator\FormValidator;
+class SupplierValidator extends FormValidator{
 
-class CompanyValidator extends FormValidator
-{
     public static $errors;
 
     public static function Validate($data)

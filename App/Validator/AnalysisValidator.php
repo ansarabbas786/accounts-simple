@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Validator;
+class AnalysisValidator extends FormValidator{
 
-use App\Validator\FormValidator;
-
-class CompanyValidator extends FormValidator
-{
     public static $errors;
 
     public static function Validate($data)

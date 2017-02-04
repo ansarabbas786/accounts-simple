@@ -6,6 +6,7 @@ use App\Model\Database;
 $faker = Faker\Factory::create();
 
 
+//seeding company tables
 for ($i = 0; $i < 100; $i++) {
 
     try {
@@ -31,6 +32,21 @@ for ($i = 0; $i < 100; $i++) {
 
         $company_id = $dbh->lastInsertId();
 
+
+        $query = "INSERT INTO company_vat(company_id, vat_reg_no, vat_scheme) VALUES (:company_id, :vat_reg_no, :vat_scheme)";
+
+        $stmt = $dbh->prepare($query);
+
+        $stmt->execute([
+          'company_id' => $company_id,
+          'vat_reg_no' => $faker->text(20),
+          'vat_scheme' => $faker->text(20)
+        ]);
+
+
+
+
+
         $query = "INSERT INTO company_address(company_id, line1, line2, town, city, post_code, country, logo_path)
                     VALUES(:company_id, :line1, :line2, :town, :city, :post_code, :country, :logo_path)";
 
@@ -46,34 +62,32 @@ for ($i = 0; $i < 100; $i++) {
                         'logo_path' => $faker->text(50)
         ]);
 
-        $query = "INSERT INTO company_bank_detials(company_id, acc_name, acc_number, sort_code, bank_name) VALUES (
+        $query = "INSERT INTO company_bank_details(company_id, acc_name, acc_number, sort_code, bank_name) VALUES(
  :company_id, :acc_name, :acc_number, :sort_code, :bank_name
 )";
 
         $stmt = $dbh->prepare($query);
         $stmt->execute(['company_id' => $company_id,
-                        'acc_name' => $faker->text(10),
-                        'acc_number' => $faker->bankAccountNumber,
-                        'sort_code' => $faker->postcode,
-                        'bank_name' => $faker->text(20)
+                        'acc_name' => $faker->text(5),
+                        'acc_number' => $faker->text(5),
+                        'sort_code' => $faker->text(5),
+                        'bank_name' => $faker->text(6)
         ]);
 
-        $query = "INSERT INTO company_financial_year(company_id, start_date, end_date, registration_no, unique_tax_ref,
-            vat_status, vat_reg_no, vat_scheme
-) VALUES (:company_id, :start_date, :end_date, :registration_no, :unique_tax_ref,
-            :vat_status, :vat_reg_no, :vat_scheme)";
+        $query = "INSERT INTO company_financial_year(company_id, start_date, end_date, registration_no, unique_tax_ref, vat_status) VALUES(:company_id, :start_date, :end_date, :registration_no, :unique_tax_ref,
+            :vat_status)";
 
         $stmt = $dbh->prepare($query);
 
         $stmt->execute(['company_id' => $company_id,
-                        'start_date' => $faker->date('Y-m-d'),
-                        'end_date' => $faker->date('Y-m-d'),
+                        'start_date' => '1994-10-10',
+                        'end_date' => '1994-10-10',
                         'registration_no' => $faker->bankAccountNumber,
                         'unique_tax_ref' => $faker->text(20),
-                        'vat_status' => $faker->boolean,
-                        'vat_reg_no' => $faker->bankAccountNumber,
-                        'vat_scheme' => $faker->text(10)
+                        'vat_status' => 0
         ]);
+
+
 
         $query = "INSERT INTO company_owner(company_id, name, dob, ni_number)
  VALUES (:company_id, :name, :dob, :ni_number)";
@@ -89,3 +103,4 @@ for ($i = 0; $i < 100; $i++) {
         echo 'something went wrong!';
     }
 }
+
