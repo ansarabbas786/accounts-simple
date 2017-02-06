@@ -95,7 +95,6 @@ class SettingsBankModel extends BaseModel
 
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
-        exit('saved!');
     }
 
     public static function delete($id)
@@ -105,7 +104,12 @@ class SettingsBankModel extends BaseModel
 
     public static function findAll()
     {
-        // TODO: Implement findAll() method.
+      self::$query = "SELECT * FROM bank JOIN 
+                                    bank_acc_details AS bac JOIN 
+                                    bank_address ba JOIN 
+                                    bank_contact bc WHERE 
+                                    
+                                    "
     }
 
     public static function findById($id)

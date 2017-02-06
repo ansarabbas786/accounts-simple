@@ -1,13 +1,13 @@
 <?php
 require_once "../vendor/autoload.php";
-Helper::head();
-Helper::css('css/expense.css');
-Helper::js('js/expense.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/expense.css');
+LayoutHelper::js('js/expense.js');
+LayoutHelper::endHead();
 
-Helper::body();
-Helper::header();
-Helper::navigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
 
 ?>
         <!--website header ends here

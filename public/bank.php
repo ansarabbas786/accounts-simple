@@ -1,14 +1,14 @@
 <?php
 require_once "../vendor/autoload.php";
-Helper::head();
-Helper::css('css/bank.css');
-Helper::js('js/bank.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/bank.css');
+LayoutHelper::js('js/bank.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
 
 ?>
         <!--website header ends here

@@ -25,5 +25,8 @@
     </noscript>
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/global.js"></script>
+
     <script src="js/bootstrap.min.js"></script>
     <script src="js/helpers/navigation_helper.js"></script>

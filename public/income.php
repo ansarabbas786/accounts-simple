@@ -1,14 +1,14 @@
 <?php
 require_once "../vendor/autoload.php";
-Helper::head();
-Helper::css('css/income.css');
-Helper::js('js/income.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/income.css');
+LayoutHelper::js('js/income.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
 
 ?>
 

@@ -11,8 +11,8 @@ $(function(){
 //        disabled: true
 //        grid: [100 , 50],
         handle: 'h4',
-        helper: 'clone',
-//        helper: function(){
+        LayoutHelper: 'clone',
+//        LayoutHelper: function(){
 //            return $('<p>uth naa sheraa</p>');
 //        },
         opacity: .6,

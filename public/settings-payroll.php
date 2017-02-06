@@ -22,16 +22,16 @@ if(isset($_POST['save'])){
 
 
 
-Helper::head();
-Helper::css('css/settings_payroll.css');
-Helper::js('js/settings/settings-payroll.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/settings_payroll.css');
+LayoutHelper::js('js/settings/settings-payroll.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
-Helper::subNavigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
+LayoutHelper::subNavigation();
 
 ?>
 

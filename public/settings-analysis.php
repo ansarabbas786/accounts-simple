@@ -1,29 +1,28 @@
 <?php
+use App\Helpers\Helper;
+use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingsAnalysisModel;
 
 require_once "../vendor/autoload.php";
 
-if (isset($_POST['save'])) {
-
-    $data = (object)$_POST['formData'];
-    SettingsAnalysisModel::processForm($data, 'save');
-}
-
-
-Helper::head();
-Helper::css('css/setting-analysis.css');
-Helper::js('js/settings/settings-analysis.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/setting-analysis.css');
+LayoutHelper::js('js/settings/settings-analysis.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
-Helper::subNavigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
+LayoutHelper::subNavigation();
 
 ?>
 
-
+<div id="notification">
+    <div class="container">
+        <h3 id="notification_text" class="text-center">My Notification Text</h3>
+    </div>
+</div>
 <!--website header ends here
 ==============================-->
 <div class="hero container-fluid">
@@ -37,7 +36,8 @@ Helper::subNavigation();
 <main class="container">
     <div class="row">
         <div class="col-xs-12 buton">
-            <button data-toggle="modal" data-target="#new_analysis_modal" class="btn btn-primary"><b>NEW +</b></button>
+            <button id="new_btn" data-toggle="modal" data-target="#new_analysis_modal" class="btn btn-primary"><b>NEW
+                    +</b></button>
         </div>
     </div>
 
@@ -52,21 +52,22 @@ Helper::subNavigation();
                         <th class="text-center">OPTIONS</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="analysis_list_body">
 
                     <?php
                     $analysis_list = SettingsAnalysisModel::findAll();
                     foreach ($analysis_list as $list_item):
                         ?>
                         <tr id="analysis_list">
-                            <td class="reference text-center"><?= $list_item->reference; ?></td>
+                            <td class="reference text-center"><?= Helper::number_format($list_item->analysis_id, 5) ?></td>
                             <td class="name"><?= $list_item->name; ?></td>
                             <td class="text-center">
-                                <button data-toggle="modal" data-analysisid="<?= $list_item->analysis_id ?>"
-                                        data-userid="<?= $list_item->user_id ?>" class="btn btn-primary edit_btn">EDIT
+                                <button data-toggle="modal"
+                                        data-analysisid="<?= Helper::number_format($list_item->analysis_id, 5) ?>"
+                                        class="btn btn-primary edit_btn">EDIT
                                 </button>
                                 <button data-toggle="modal" data-analysisid="<?= $list_item->analysis_id ?>"
-                                        data-userid="<?= $list_item->user_id ?>" class="btn btn-primary delete_btn">
+                                        class="btn btn-primary delete_btn">
                                     DELETE
                                 </button>
                             </td>
@@ -100,8 +101,12 @@ Helper::subNavigation();
 
 
                 <div class="form-group modal_buttons text-right">
-                    <button class="btn btn-danger" id="confirm_delete_btn">YES</button>
-                    <button data-dismiss="modal" class="btn btn-primary">NO</button>
+                    <form action="routes.php?action=delete" method="post" id="confirm_delete_form">
+                        <input type="hidden" id="analysis_id" name="analysis_id">
+                        <button class="btn btn-danger" name="delete" type="submit" id="confirm_delete_btn">YES <img
+                                    src="images/spin.svg" class="hide_spinner"></button>
+                        <button data-dismiss="modal" class="btn btn-primary">NO</button>
+                    </form>
                 </div>
 
             </div>
@@ -126,16 +131,15 @@ Helper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                <form action="routes.php?action=save" method="post" id="new_analysis_form">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
                             <div class="col-xs-5">
-                                <label for="reference">REFERANCE</label>
+                                <label for="reference">REFERENCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" autofocus class="form-control" id="reference"
-                                       name="formData[reference]">
+                                <input type="text" disabled class="form-control" id="reference">
                             </div>
 
                         </div>
@@ -147,7 +151,7 @@ Helper::subNavigation();
                                 <label for="name">NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="name" name="formData[name]">
+                                <input type="text" autofocus class="form-control" minlength="3" id="name" name="name">
                             </div>
                         </div>
                     </div>
@@ -155,7 +159,9 @@ Helper::subNavigation();
 ===============================-->
 
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" name="save" class="btn btn-primary">ADD</button>
+                        <button type="submit" name="save" class="btn btn-primary">ADD <img class="hide_spinner"
+                                                                                           src="images/spin.svg">
+                        </button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 
@@ -181,7 +187,7 @@ Helper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" id="analysis_update_form">
+                <form action="routes.php?action=update" id="analysis_update_form" method="post">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -189,7 +195,8 @@ Helper::subNavigation();
                                 <label for="reference">REFERENCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="reference" name="formData[reference]">
+                                <input type="text" readonly class="form-control" id="analysis_id"
+                                       name="analysis_id">
                             </div>
 
                         </div>
@@ -201,13 +208,15 @@ Helper::subNavigation();
                                 <label for="name">NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="name" name="fromData[name]">
+                                <input type="text" autofocus class="form-control" id="name" name="name">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" class="btn btn-primary">UPDATE</button>
+                        <button type="submit" name="update" class="btn btn-primary">UPDATE <img src="images/spin.svg"
+                                                                                                class="hide_spinner">
+                        </button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 

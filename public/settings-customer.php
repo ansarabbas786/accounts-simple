@@ -19,16 +19,16 @@ if (isset($_POST['save'])) {
 }
 
 
-Helper::head();
-Helper::css('css/setting-customer.css');
-Helper::js('js/settings/settings-customer.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/setting-customer.css');
+LayoutHelper::js('js/settings/settings-customer.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
-Helper::subNavigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
+LayoutHelper::subNavigation();
 
 ?>
 

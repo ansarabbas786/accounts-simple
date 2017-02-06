@@ -1,13 +1,13 @@
 <?php
 require_once "../vendor/autoload.php";
-Helper::head();
-Helper::css('css/dashboard.css');
-Helper::js('js/dashboard.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/dashboard.css');
+LayoutHelper::js('js/dashboard.js');
+LayoutHelper::endHead();
 
-Helper::body();
-Helper::header();
-Helper::navigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
 
 ?>
         <!--website header ends here

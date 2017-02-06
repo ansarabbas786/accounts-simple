@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     $('#privileges_list li ul li').click(function () {
         var list_value = $(this).text();
@@ -21,7 +21,7 @@ $(document).ready(function(){
     /*----==============================Approved posts edit===========================================*/
 
 
-    $('#new_category_form button').click(function (evt) {
+    $('#new_category_form').submit(function (evt) {
 
         evt.preventDefault();
 
@@ -34,10 +34,7 @@ $(document).ready(function(){
             cache: false,
             data: form_category.serialize(),
             success: function (response) {
-
-
                 console.log(response);
-
                 return false;
                 if ($.trim(response) == "true") {
 
@@ -163,7 +160,7 @@ $(document).ready(function(){
                     $('#ajax_message').html('<p  style="color: green;">Post deleted Successfully!</p>');
                     hide_modal();
 
-                    setTimeout(function(){
+                    setTimeout(function () {
 
                         window.location.replace('view_all.php');
 
@@ -206,7 +203,7 @@ $(document).ready(function(){
                     $('#ajax_message').html('<p  style="color: green;">Post rejected & transferd to the rejected post section</p>');
                     hide_modal();
 
-                    setTimeout(function(){
+                    setTimeout(function () {
 
                         window.location.replace('rejected_post.php');
 
@@ -249,7 +246,7 @@ $(document).ready(function(){
                     $('#ajax_message').html('<p  style="color: green;">Post approved. Now it is available to public.</p>');
                     hide_modal();
 
-                    setTimeout(function(){
+                    setTimeout(function () {
 
                         window.location.replace('view_all.php');
 
@@ -334,7 +331,7 @@ $(document).ready(function(){
 
                     window.location = "admin_home.php";
 
-                } else{
+                } else {
 
                     $('#modal_id').modal('hide');
                     $('#login_form p.error').html('Your credentials are incorrect!').slideDown();
@@ -436,7 +433,7 @@ $(document).ready(function(){
 
                     hide_modal();
 
-                    setTimeout(function(){
+                    setTimeout(function () {
 
                         window.location.replace('manage_accounts.php');
 
@@ -444,7 +441,7 @@ $(document).ready(function(){
                     }, 2000);
 
 
-                }else{
+                } else {
                     $('#ajax_message').html('<h4>Something went wrong while updating information.</h4>');
 
                 }
@@ -452,9 +449,7 @@ $(document).ready(function(){
         });
 
 
-
     });
-
 
 
     /************Updating messages  ************/
@@ -491,13 +486,10 @@ $(document).ready(function(){
         var link = $(this);
 
         $.ajax({
-
             type: 'GET',
             url: link.attr('href'),
             cache: false,
             success: function (response) {
-
-
 
                 if ($.trim(response) == 'true') {
 
@@ -507,8 +499,6 @@ $(document).ready(function(){
         });
 
     });
-
-
 
 
     /************View messages  ************/
@@ -552,17 +542,14 @@ $(document).ready(function(){
     }
 
 
-
-
-    $('.view_image_link').on('click' , 'img' , function(e) {
+    $('.view_image_link').on('click', 'img', function (e) {
         e.preventDefault();
 
         var path = $(this).attr('src');
 
-        $('#image_view_modal .modal-body img').attr('src' , path);
+        $('#image_view_modal .modal-body img').attr('src', path);
 
     });
-
 
 
 });

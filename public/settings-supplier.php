@@ -10,16 +10,16 @@ if (isset($_POST['save'])) {
 }
 
 
-Helper::head();
-Helper::css('css/setting-supplier.css');
-Helper::js('js/settings/settings-supplier.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/setting-supplier.css');
+LayoutHelper::js('js/settings/settings-supplier.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
-Helper::subNavigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
+LayoutHelper::subNavigation();
 
 ?>
 

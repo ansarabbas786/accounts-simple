@@ -1,9 +1,12 @@
 <?php
-class Helper{
+namespace App\Helpers;
+
+class LayoutHelper
+{
 
     public static function redirect($url = 'home')
     {
-        header('Location:' , urlencode($url));
+        header('Location:', urlencode($url));
         exit();
     }
 
@@ -11,6 +14,7 @@ class Helper{
     {
         require_once "../Layouts/head.php";
     }
+
     public static function footer()
     {
         require_once "../Layouts/footer.php";
@@ -20,19 +24,20 @@ class Helper{
     {
         echo '<link rel="stylesheet" type="text/css" href="' . $url . '">';
     }
+
     public static function js($url)
     {
-       echo '<script type="text/javascript" src="' . $url . '"></script>';
+        echo '<script type="text/javascript" src="' . $url . '"></script>';
     }
 
     public static function endHead()
     {
-       echo '</head>';
+        echo '</head>';
     }
 
     public static function body()
     {
-       echo '<body>';
+        echo '<body>';
     }
 
     public static function header()
@@ -44,6 +49,7 @@ class Helper{
     {
         require_once "../Layouts/navigation.php";
     }
+
     public static function subNavigation()
     {
         require_once "../Layouts/sub-navigation.php";

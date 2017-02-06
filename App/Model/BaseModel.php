@@ -24,4 +24,5 @@ abstract class BaseModel
 
     protected abstract static function findById($id);
 
+
 }

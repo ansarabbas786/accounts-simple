@@ -19,16 +19,16 @@ if (isset($_POST['submit'])) {
     }
 }
 
-Helper::head();
-Helper::css('css/settings-company.css');
-Helper::js('js/settings/settings-company.js');
-Helper::endHead();
+LayoutHelper::head();
+LayoutHelper::css('css/settings-company.css');
+LayoutHelper::js('js/settings/settings-company.js');
+LayoutHelper::endHead();
 
 
-Helper::body();
-Helper::header();
-Helper::navigation();
-Helper::subNavigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
+LayoutHelper::subNavigation();
 
 ?>
 

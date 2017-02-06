@@ -1,24 +1,22 @@
 <?php
+use App\Helpers\Helper;
+use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingsBankModel;
+
 
 require_once "../vendor/autoload.php";
 
-if (isset($_POST['save'])) {
-    $data = (object)$_POST['formData'];
-    SettingsBankModel::processForm($data, 'save');
-}
+
+LayoutHelper::head();
+LayoutHelper::css('css/setting-bank.css');
+LayoutHelper::js('js/settings/settings-bank.js');
+LayoutHelper::endHead();
 
 
-Helper::head();
-Helper::css('css/setting-bank.css');
-Helper::js('js/settings/settings-bank.js');
-Helper::endHead();
-
-
-Helper::body();
-Helper::header();
-Helper::navigation();
-Helper::subNavigation();
+LayoutHelper::body();
+LayoutHelper::header();
+LayoutHelper::navigation();
+LayoutHelper::subNavigation();
 
 ?>
 
@@ -36,7 +34,8 @@ Helper::subNavigation();
 <main class="container">
     <div class="row">
         <div class="col-xs-12 buton">
-            <button data-toggle="modal" data-target="#bank_new_modal" class="btn btn-primary"><b>NEW +</b></button>
+            <button data-toggle="modal" id="new_plus_btn" data-target="#bank_new_modal" class="btn btn-primary"><b>NEW
+                    +</b></button>
         </div>
     </div>
 
@@ -54,26 +53,39 @@ Helper::subNavigation();
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>CURRENT ACCOUNT</td>
-                        <td class="text-center">001</td>
-                        <td>55-10-55</td>
-                        <td>5250 2550</td>
-                        <td class="text-center">
-                            <button data-toggle="modal" class="btn btn-primary edit_btn">EDIT</button>
-                            <button data-toggle="modal" class="btn btn-primary delete_btn">DELETE</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>CASH ACCOUNT</td>
-                        <td class="text-center">002</td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-center">
-                            <button data-toggle="modal" class="btn btn-primary edit_btn">EDIT</button>
-                            <button data-toggle="modal" class="btn btn-primary delete_btn">DELETE</button>
-                        </td>
-                    </tr>
+                    <?php
+                    $banks = SettingsBankModel::findAll();
+
+                    foreach ($banks as $bank):
+                        ?>
+                        <tr>
+                            <td class="acc-name"><?= $bank->acc_name ?></td>
+                            <td class="text-center reference"><?= Helper::number_format($bank->bank_id, 5) ?></td>
+                            <td class="sort-code"><?= $bank->sort_code ?></td>
+                            <td class="acc-no"><?= $bank->acc_no ?></td>
+                            <td hidden class="bank-name"><?= $data->bank_name ?></td>
+                            <td hidden class="start-balance"><?= $data->start_balance?></td>
+                            <td hidden class="start-balance"><?= $data->start_balance?></td>
+                            <td hidden class="lin1"><?= $data->line1 ?></td>
+                            <td hidden class="lin2"><?= $data->line2 ?></td>
+                            <td hidden class="town"><?= $data->town ?></td>
+                            <td hidden class="city"><?= $data->city ?></td>
+                            <td hidden class="country"><?= $data->country ?></td>
+                            <td hidden class="post-code"><?= $data->post_code ?></td>
+                            <td hidden class="contact-name"><?= $data->contact_name ?></td>
+                            <td hidden class="contact-tel"><?= $data->contact_tel ?></td>
+                            <td hidden class="fax"><?= $data->fax ?></td>
+                            <td hidden class="email"><?= $data->email ?></td>
+                            <td hidden class="notes"><?= $data->notes ?></td>
+
+
+                            <td class="text-center">
+                                <button data-toggle="modal" class="btn btn-primary edit_btn">EDIT</button>
+                                <button data-toggle="modal" class="btn btn-primary delete_btn">DELETE</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+
                     </tbody>
                 </table>
             </div>
@@ -97,7 +109,7 @@ Helper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                <form action="routes.php?action=save" id="new_bank_form" method="post">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -105,7 +117,7 @@ Helper::subNavigation();
                                 <label for="ac_ref">A/C REF.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="ac_ref" name="formData[acc_ref]">
+                                <input type="text" class="form-control" autofocus id="ac_ref" name="acc_ref">
                             </div>
 
                         </div>
@@ -117,7 +129,7 @@ Helper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="formData[acc_name]">
+                                <input type="text" class="form-control" id="account_name" name="acc_name">
                             </div>
                         </div>
                     </div>
@@ -130,7 +142,7 @@ Helper::subNavigation();
                                 <label for="bank_name">BANK NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="bank_name" name="formData[bank_name]">
+                                <input type="text" class="form-control" id="bank_name" name="bank_name">
                             </div>
 
                         </div>
@@ -142,7 +154,8 @@ Helper::subNavigation();
                                 <label for="start_balance">START BALANCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="start_balance" name="formData[start_balance]">
+                                <input type="text" class="form-control" id="start_balance"
+                                       name="start_balance">
                             </div>
                         </div>
                     </div>
@@ -159,7 +172,7 @@ Helper::subNavigation();
                                 <label for="address_line1">LINE 1</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="address_line1" name="formData[line1]">
+                                <input type="text" class="form-control" id="address_line1" name="line1">
                             </div>
 
                         </div>
@@ -171,7 +184,7 @@ Helper::subNavigation();
                                 <label for="address_line2">LINE 2</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="address_line2" name="formData[line2]">
+                                <input type="text" class="form-control" id="address_line2" name="line2">
                             </div>
                         </div>
                     </div>
@@ -183,7 +196,7 @@ Helper::subNavigation();
                                 <label for="town">TOWN</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="town" name="formData[town]">
+                                <input type="text" class="form-control" id="town" name="town">
                             </div>
 
                         </div>
@@ -195,7 +208,7 @@ Helper::subNavigation();
                                 <label for="city">CITY</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="city" name="formData[city]">
+                                <input type="text" class="form-control" id="city" name="city">
                             </div>
                         </div>
                     </div>
@@ -207,7 +220,7 @@ Helper::subNavigation();
                                 <label for="postcode">POSTCODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="postcode" name="formData[post_code]">
+                                <input type="text" class="form-control" id="postcode" name="post_code">
                             </div>
 
                         </div>
@@ -219,7 +232,7 @@ Helper::subNavigation();
                                 <label for="country">COUNTRY</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="country" name="formData[country]">
+                                <input type="text" class="form-control" id="country" name="country">
                             </div>
                         </div>
                     </div>
@@ -234,7 +247,7 @@ Helper::subNavigation();
                                 <label for="contact_name">CONTACT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="contact_name" name="formData[contact_name]">
+                                <input type="text" class="form-control" id="contact_name" name="contact_name">
                             </div>
 
                         </div>
@@ -246,7 +259,7 @@ Helper::subNavigation();
                                 <label for="telephone">TELEPHONE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="telephone" name="formData[telephone]">
+                                <input type="text" class="form-control" id="telephone" name="telephone">
                             </div>
 
                         </div>
@@ -259,7 +272,7 @@ Helper::subNavigation();
                                 <label for="fax">FAX</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="fax" name="formData[fax]">
+                                <input type="text" class="form-control" id="fax" name="fax">
                             </div>
                         </div>
                     </div>
@@ -271,7 +284,7 @@ Helper::subNavigation();
                                 <label for="email">EMAIL</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="email" class="form-control" id="email" name="formData[email]">
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                         </div>
                     </div>
@@ -287,7 +300,7 @@ Helper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="formData[acc_name]">
+                                <input type="text" class="form-control" id="account_name" name="acc_name">
                             </div>
 
                         </div>
@@ -299,7 +312,7 @@ Helper::subNavigation();
                                 <label for="sort_code">SORT CODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="number" class="form-control" id="sort_code" name="formData[sort_code]">
+                                <input type="number" class="form-control" id="sort_code" name="sort_code">
                             </div>
                         </div>
                     </div>
@@ -311,7 +324,7 @@ Helper::subNavigation();
                                 <label for="account_no">ACCOUNT NO.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_no" name="formData[acc_no]">
+                                <input type="text" class="form-control" id="account_no" name="acc_no">
                             </div>
 
                         </div>
@@ -325,7 +338,7 @@ Helper::subNavigation();
                                 <label for="notes">NOTES</label>
                             </div>
                             <div class="col-xs-7 col-sm-10">
-                                <textarea name="formData[notes]" id="notes" class="form-control" ></textarea>
+                                <textarea name="notes" id="notes" class="form-control"></textarea>
                             </div>
 
                         </div>
@@ -333,7 +346,9 @@ Helper::subNavigation();
 
 
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" class="btn btn-primary" name="save">ADD</button>
+                        <button type="submit" class="btn btn-primary" name="save">ADD <img src="images/spin.svg"
+                                                                                           class="hide_spinner">
+                        </button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 

@@ -1,4 +1,20 @@
 $(function () {
+
+
+
+    $('body').on("click" , function(evt){
+        evt.preventDefault();
+
+        // new notification text can be changed here
+        // $('#notification_text').html();
+        $('#notification').slideDown('fast' , function(){
+            setTimeout(function(){
+                $('#notification').slideUp();
+            } , 2000);
+        });
+    });
+
+
     $('#my_navbar ul li.active').removeClass('active');
     $('#my_navbar ul li a[href="settings-company.php"]').parent().addClass('active');
 
