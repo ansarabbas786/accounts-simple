@@ -1,4 +1,5 @@
 <?php
+use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingsCompanyModel;
 use App\Validator\CompanyValidator;
 

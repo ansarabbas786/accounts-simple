@@ -12,6 +12,9 @@
 .hide_spinner{
     display: none;
 }
+.error {
+    color:red;
+}
 
 
 

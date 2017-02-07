@@ -1,0 +1,21 @@
+Telephone, Mobile, Fax   – always 11 digits - 01212 454545
+Address Line 1 – can contain numbers and letters of up to 50 characters
+Address 2 – Same as Above
+Town – Max 25 characters
+City – Max 25 characters
+Post Code – It is a combination of 5 to 7 numbers/letters – UK postcode regex are normally available.
+Company Registration Number: 8 digits – 045452101
+Unique Tax ref: 10 digits
+VAT Reg Number: 9 digits
+VAT Schemes – I think I sent this list already?
+Bank Details
+Account Name: Any name up to 50 characters
+Account Number: 8 digits
+Sort Code: 6 digits in this format 00-00-00
+Bank Name: Any name up to 20 characters
+National Insurance number/N.I.N.O:  two letter-6 digits-1 letter   -    SG552244C
+Account Ref (Customers): starts with 00001 and continue from the previous one.
+Credit Limit – Any sum
+Payment Days: Any number of days.
+Payment terms: 100 characters
+Numbers for Invoices/credits – start from 00001 and then continue, same with reference numbers in other modules.

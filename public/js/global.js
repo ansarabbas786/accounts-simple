@@ -10,8 +10,10 @@ function hideSpinner(clicked_btn) {
     clicked_btn.find('img').addClass('hide_spinner')
 }
 
-function showMessage(message) {
-    $('#notification_text').html('<h1>' + message + '</h1>');
+function showMessage(message, color = 'text-success') {
+
+
+    $('#notification_text').html('<h1 class="' + color + ' ">' + message + '</h1>');
     $('#notification').slideDown();
     hideMessage();
 }

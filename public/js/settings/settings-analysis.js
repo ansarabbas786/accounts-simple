@@ -51,10 +51,8 @@ $(function () {
                     $('#analysis_list_body').append(" <tr id='analysis_list'> " +
                         "<td class='reference text-center'>" + reference + "</td> " +
                         "<td class='name'>" + name + "</td> " +
-                        "<td class='text-center'><button data-toggle='modal' data-analysisid='" + response + "'" +
-                        "class='btn btn-primary edit_btn'>EDIT  </button> " +
-                        " <button data-toggle='modal' data-analysisid='" + response + "'" +
-                        "class='btn btn-primary delete_btn'> DELETE </button></td></tr>");
+                        "<td class='text-center'><button data-toggle='modal' data-analysisid='" + response + "' class='btn btn-primary edit_btn'>EDIT  </button> " +
+                        ' <button data-toggle="modal" data-id="' + response + '" class="btn btn-primary delete_btn"> DELETE </button></td></tr>');
 
                     form[0].reset();
 
@@ -148,9 +146,9 @@ $(function () {
 
         delete_btn = $(this);
 
-        var analysis_id = $(this).data('analysisid');
+        var analysis_id = $(this).data('id');
 
-        $('#confirm_delete_form #analysis_id').val(analysis_id);
+        $('#confirm_delete_form #id').val(analysis_id);
 
         $('#confirm_modal').modal("show");
     });

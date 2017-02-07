@@ -26,3 +26,12 @@
 </nav>
 
 
+<div id="notification">
+    <div class="container">
+        <h3 id="notification_text" class="text-center">My Notification Text</h3>
+    </div>
+</div>
+
+<?php
+require_once "delete-modal.php";
+?>

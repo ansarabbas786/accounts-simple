@@ -1,4 +1,6 @@
 <?php
+use App\Helpers\LayoutHelper;
+
 require_once "../vendor/autoload.php";
 LayoutHelper::head();
 LayoutHelper::css('css/income.css');

@@ -18,11 +18,7 @@ LayoutHelper::subNavigation();
 
 ?>
 
-<div id="notification">
-    <div class="container">
-        <h3 id="notification_text" class="text-center">My Notification Text</h3>
-    </div>
-</div>
+
 <!--website header ends here
 ==============================-->
 <div class="hero container-fluid">
@@ -66,7 +62,7 @@ LayoutHelper::subNavigation();
                                         data-analysisid="<?= Helper::number_format($list_item->analysis_id, 5) ?>"
                                         class="btn btn-primary edit_btn">EDIT
                                 </button>
-                                <button data-toggle="modal" data-analysisid="<?= $list_item->analysis_id ?>"
+                                <button data-toggle="modal" data-id="<?= $list_item->analysis_id ?>"
                                         class="btn btn-primary delete_btn">
                                     DELETE
                                 </button>
@@ -85,38 +81,6 @@ LayoutHelper::subNavigation();
 ==============================-->
 
 
-<!--confirm modal starts here
-======================================-->
-
-<div class="modal fade" id="confirm_modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header danger">
-                <button class="close" data-dismiss="modal">&times;</button>
-                <h3>CONFIRM</h3>
-            </div>
-            <div class="modal-body">
-                <br><br>
-                <p class="lead text-center"><b>ARE YOU SURE YOU WANT TO DELETE THIS RECORD ?</b></p>
-
-
-                <div class="form-group modal_buttons text-right">
-                    <form action="routes.php?action=delete" method="post" id="confirm_delete_form">
-                        <input type="hidden" id="analysis_id" name="analysis_id">
-                        <button class="btn btn-danger" name="delete" type="submit" id="confirm_delete_btn">YES <img
-                                    src="images/spin.svg" class="hide_spinner"></button>
-                        <button data-dismiss="modal" class="btn btn-primary">NO</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!--confirm modal ends here
-======================================-->
 
 
 <!--new modal starts here

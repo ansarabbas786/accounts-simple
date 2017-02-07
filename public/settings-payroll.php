@@ -1,25 +1,15 @@
 <?php
+use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingsPayrollModel;
 
 require_once "../vendor/autoload.php";
 
 
-if(isset($_POST['save'])){
-    $data = (object) $_POST['formData'];
+if (isset($_POST['save'])) {
+    $data = (object)$_POST['formData'];
 
     SettingsPayrollModel::processForm($data, 'save');
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 LayoutHelper::head();
@@ -40,7 +30,9 @@ LayoutHelper::subNavigation();
 ==============================-->
 <div class="hero container-fluid">
     <div class="row text-center">
-        <h1>SETTINGS > <small>PAYROLL</small></h1>
+        <h1>SETTINGS >
+            <small>PAYROLL</small>
+        </h1>
     </div>
 </div>
 
@@ -51,7 +43,8 @@ LayoutHelper::subNavigation();
     <div class="row">
 
         <div class="col-xs-12 col-sm-4">
-            <button data-toggle="modal" data-target="#new_payroll_modal" class="bttn btn btn-primary"><b>NEW EMPLOYEE</b></button>
+            <button data-toggle="modal" data-target="#new_payroll_modal" class="bttn btn btn-primary"><b>NEW
+                    EMPLOYEE</b></button>
         </div>
 
     </div>
@@ -118,9 +111,6 @@ LayoutHelper::subNavigation();
 ==============================-->
 
 
-
-
-
 <!--new modal starts here
 ========================================-->
 
@@ -161,7 +151,6 @@ LayoutHelper::subNavigation();
 ===============================-->
 
 
-
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
                             <div class="col-xs-5">
@@ -169,7 +158,8 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
 
-                                <input type="text" class="form-control date_input" name="formData[dob]" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="formData[dob]"
+                                       placeholder="dd/mm/yyyy">
                             </div>
 
                         </div>
@@ -254,7 +244,6 @@ LayoutHelper::subNavigation();
                     <!--4th row ends here-->
 
 
-
                     <!--5th row starts here-->
 
                     <div class="col-xs-12 col-sm-6">
@@ -320,7 +309,8 @@ LayoutHelper::subNavigation();
                                 <label for="start_date">START DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="formData[start_date]" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="formData[start_date]"
+                                       placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
@@ -334,7 +324,8 @@ LayoutHelper::subNavigation();
                                 <label for="leaving_date">LEAVING DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="formData[leaving_date]" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="formData[leaving_date]"
+                                       placeholder="dd/mm/yyyy">
                             </div>
 
                         </div>
@@ -397,7 +388,6 @@ LayoutHelper::subNavigation();
                     <!--10th row ends here-->
 
 
-
                     <!--11th row starts here-->
 
                     <div class="col-xs-12 col-sm-6">
@@ -437,8 +427,6 @@ LayoutHelper::subNavigation();
 
 <!--new modal ends here
 ========================================-->
-
-
 
 
 <!--new modal starts here
@@ -481,7 +469,6 @@ LayoutHelper::subNavigation();
 ===============================-->
 
 
-
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
                             <div class="col-xs-5">
@@ -489,7 +476,8 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
 
-                                <input type="text" class="form-control date_input" name="date_of_birth" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="date_of_birth"
+                                       placeholder="dd/mm/yyyy">
                             </div>
 
                         </div>
@@ -574,7 +562,6 @@ LayoutHelper::subNavigation();
                     <!--4th row ends here-->
 
 
-
                     <!--5th row starts here-->
 
                     <div class="col-xs-12 col-sm-6">
@@ -640,7 +627,8 @@ LayoutHelper::subNavigation();
                                 <label for="start_date">START DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="start_date" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="start_date"
+                                       placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
@@ -654,7 +642,8 @@ LayoutHelper::subNavigation();
                                 <label for="leaving_date">LEAVING DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="leaving_date" placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="leaving_date"
+                                       placeholder="dd/mm/yyyy">
                             </div>
 
                         </div>
@@ -717,7 +706,6 @@ LayoutHelper::subNavigation();
                     <!--10th row ends here-->
 
 
-
                     <!--11th row starts here-->
 
                     <div class="col-xs-12 col-sm-6">
@@ -759,9 +747,6 @@ LayoutHelper::subNavigation();
 ========================================-->
 
 
-
-
-
 <!--confirm modal starts here
 ======================================-->
 
@@ -790,14 +775,6 @@ LayoutHelper::subNavigation();
 
 <!--confirm modal ends here
 ======================================-->
-
-
-
-
-
-
-
-
 
 
 <!--website footer starts here

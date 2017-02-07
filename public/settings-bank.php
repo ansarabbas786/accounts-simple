@@ -34,7 +34,7 @@ LayoutHelper::subNavigation();
 <main class="container">
     <div class="row">
         <div class="col-xs-12 buton">
-            <button data-toggle="modal" id="new_plus_btn" data-target="#bank_new_modal" class="btn btn-primary"><b>NEW
+            <button data-toggle="modal" id="new_btn" data-target="#bank_new_modal" class="btn btn-primary"><b>NEW
                     +</b></button>
         </div>
     </div>
@@ -52,7 +52,7 @@ LayoutHelper::subNavigation();
                         <th class="text-center">OPTIONS</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="bank_list_body">
                     <?php
                     $banks = SettingsBankModel::findAll();
 
@@ -60,28 +60,31 @@ LayoutHelper::subNavigation();
                         ?>
                         <tr>
                             <td class="acc-name"><?= $bank->acc_name ?></td>
-                            <td class="text-center reference"><?= Helper::number_format($bank->bank_id, 5) ?></td>
+                            <td class="text-center bank_id"><?= Helper::number_format($bank->bank_id, 5) ?></td>
                             <td class="sort-code"><?= $bank->sort_code ?></td>
                             <td class="acc-no"><?= $bank->acc_no ?></td>
-                            <td hidden class="bank-name"><?= $data->bank_name ?></td>
-                            <td hidden class="start-balance"><?= $data->start_balance?></td>
-                            <td hidden class="start-balance"><?= $data->start_balance?></td>
-                            <td hidden class="lin1"><?= $data->line1 ?></td>
-                            <td hidden class="lin2"><?= $data->line2 ?></td>
-                            <td hidden class="town"><?= $data->town ?></td>
-                            <td hidden class="city"><?= $data->city ?></td>
-                            <td hidden class="country"><?= $data->country ?></td>
-                            <td hidden class="post-code"><?= $data->post_code ?></td>
-                            <td hidden class="contact-name"><?= $data->contact_name ?></td>
-                            <td hidden class="contact-tel"><?= $data->contact_tel ?></td>
-                            <td hidden class="fax"><?= $data->fax ?></td>
-                            <td hidden class="email"><?= $data->email ?></td>
-                            <td hidden class="notes"><?= $data->notes ?></td>
+                            <td hidden class="bank-name"><?= $bank->bank_name ?></td>
+                            <td hidden class="start-balance"><?= $bank->start_balance ?></td>
+                            <td hidden class="line1"><?= $bank->line1 ?></td>
+                            <td hidden class="line2"><?= $bank->line2 ?></td>
+                            <td hidden class="town"><?= $bank->town ?></td>
+                            <td hidden class="city"><?= $bank->city ?></td>
+                            <td hidden class="country"><?= $bank->country ?></td>
+                            <td hidden class="post-code"><?= $bank->post_code ?></td>
+                            <td hidden class="contact-name"><?= $bank->contact_name ?></td>
+                            <td hidden class="telephone "><?= $bank->telephone ?></td>
+                            <td hidden class="fax"><?= $bank->fax ?></td>
+                            <td hidden class="email"><?= $bank->email ?></td>
+                            <td hidden class="notes"><?= $bank->notes ?></td>
 
 
                             <td class="text-center">
-                                <button data-toggle="modal" class="btn btn-primary edit_btn">EDIT</button>
-                                <button data-toggle="modal" class="btn btn-primary delete_btn">DELETE</button>
+                                <button data-toggle="modal" data-bankid="<?= $bank->bank_id ?>"
+                                        class="btn btn-primary edit_btn">EDIT
+                                </button>
+                                <button data-toggle="modal" data-bankid="<?= $bank->bank_id ?>"
+                                        class="btn btn-primary delete_btn">DELETE
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -97,7 +100,7 @@ LayoutHelper::subNavigation();
 ==============================-->
 
 
-<!--bank new modal starts here
+<!--bank  modal starts here
 ========================================-->
 
 <div class="modal fade" id="bank_new_modal">
@@ -117,9 +120,8 @@ LayoutHelper::subNavigation();
                                 <label for="ac_ref">A/C REF.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" autofocus id="ac_ref" name="acc_ref">
+                                <input type="text" readonly class="form-control"  id="bank_id" name="bank_id">
                             </div>
-
                         </div>
                     </div>
 
@@ -129,7 +131,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="acc_name">
+                                <input type="text" class="form-control" autofocus id="account_name" name="acc_name">
                             </div>
                         </div>
                     </div>
@@ -300,7 +302,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="acc_name">
+                                <input type="text" class="form-control" id="account_name" name="acc_name_final">
                             </div>
 
                         </div>
@@ -374,7 +376,7 @@ LayoutHelper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="">
+                <form action="routes.php?action=update" id="update_bank_form" method="post">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -382,9 +384,8 @@ LayoutHelper::subNavigation();
                                 <label for="ac_ref">A/C REF.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="ac_ref" name="ac_ref">
+                                <input type="text" readonly class="form-control"  id="ac_ref" name="bank_id">
                             </div>
-
                         </div>
                     </div>
 
@@ -394,10 +395,12 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="account_name">
+                                <input type="text" class="form-control" autofocus id="account_name" name="acc_name">
                             </div>
                         </div>
                     </div>
+                    <!--first two fields ends here
+                    ===============================-->
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -417,10 +420,13 @@ LayoutHelper::subNavigation();
                                 <label for="start_balance">START BALANCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="start_balance" name="start_balance">
+                                <input type="text" class="form-control" id="start_balance"
+                                       name="start_balance">
                             </div>
                         </div>
                     </div>
+                    <!--second row ends here
+                    ===============================-->
 
                     <div class="clearfix"></div>
                     <h2 class="modal_heading_header">ADDRESS</h2>
@@ -432,7 +438,7 @@ LayoutHelper::subNavigation();
                                 <label for="address_line1">LINE 1</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="address_line1" name="address_line1">
+                                <input type="text" class="form-control" id="address_line1" name="line1">
                             </div>
 
                         </div>
@@ -444,7 +450,7 @@ LayoutHelper::subNavigation();
                                 <label for="address_line2">LINE 2</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="address_line2" name="address_line2">
+                                <input type="text" class="form-control" id="address_line2" name="line2">
                             </div>
                         </div>
                     </div>
@@ -480,7 +486,7 @@ LayoutHelper::subNavigation();
                                 <label for="postcode">POSTCODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="postcode" name="postcode">
+                                <input type="text" class="form-control" id="postcode" name="post_code">
                             </div>
 
                         </div>
@@ -560,7 +566,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="account_name">
+                                <input type="text" class="form-control" id="account_name" name="acc_name_final">
                             </div>
 
                         </div>
@@ -584,7 +590,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_no">ACCOUNT NO.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_no" name="account_no">
+                                <input type="text" class="form-control" id="account_no" name="acc_no">
                             </div>
 
                         </div>
@@ -606,7 +612,9 @@ LayoutHelper::subNavigation();
 
 
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" class="btn btn-primary">UPDATE</button>
+                        <button type="submit" class="btn btn-primary" name="save">UPDATE <img src="images/spin.svg"
+                                                                                           class="hide_spinner">
+                        </button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 
@@ -623,27 +631,7 @@ LayoutHelper::subNavigation();
 <!--confirm modal starts here
 ======================================-->
 
-<div class="modal fade" id="confirm_modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header danger">
-                <button class="close" data-dismiss="modal">&times;</button>
-                <h3>CONFIRM</h3>
-            </div>
-            <div class="modal-body">
-                <br><br>
-                <p class="lead text-center"><b>ARE YOU SURE YOU WANT TO DELETE THIS BANK ?</b></p>
 
-
-                <div class="form-group modal_buttons text-right">
-                    <button class="btn btn-danger">YES</button>
-                    <button data-dismiss="modal" class="btn btn-primary">NO</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!--confirm modal ends here

@@ -46,7 +46,6 @@ class SettingsAnalysisModel extends BaseModel
         return $analysis_list;
     }
 
-
     public static function save($data)
     {
         self::openConnection();
@@ -84,10 +83,11 @@ class SettingsAnalysisModel extends BaseModel
     {
         self::openConnection();
         $user_id = 1;
-        self::$query = "DELETE FROM analysis WHERE analysis_id = :analysis_id AND user_id = :user_id";
+        self::$query = "DELETE FROM analysis WHERE analysis_id = :id AND user_id = :user_id";
+
 
         self::$query_data = [
-            'analysis_id' => $data->analysis_id,
+            'id' => (int)trim($data->id),
             'user_id' => $user_id
         ];
         self::$stmt = self::$dbh->prepare(self::$query);

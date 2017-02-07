@@ -1,14 +1,13 @@
 <?php
+use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingSupplierModel;
 
 require_once "../vendor/autoload.php";
 
-
 if (isset($_POST['save'])) {
-    $data = (object) $_POST['formData'];
+    $data = (object)$_POST;
     SettingSupplierModel::processForm($data, 'save');
 }
-
 
 LayoutHelper::head();
 LayoutHelper::css('css/setting-supplier.css');
@@ -97,7 +96,7 @@ LayoutHelper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="<?php $_SERVER['PHP_SELF'] ?>"  method="post">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -105,7 +104,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_ref">ACCOUNT REF.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_ref" name="formData[acc_ref]">
+                                <input type="text" class="form-control" id="account_ref" name="acc_ref">
                             </div>
 
                         </div>
@@ -117,7 +116,7 @@ LayoutHelper::subNavigation();
                                 <label for="company_name">COMPANY NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="company_name" name="formData[company_name]">
+                                <input type="text" class="form-control" id="company_name" name="company_name">
                             </div>
                         </div>
                     </div>
@@ -130,7 +129,7 @@ LayoutHelper::subNavigation();
                                 <label for="credit_limit">CREDIT LIMIT</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="credit_limit" name="formData[credit_limit]">
+                                <input type="text" class="form-control" id="credit_limit" name="credit_limit">
                             </div>
 
                         </div>
@@ -142,7 +141,7 @@ LayoutHelper::subNavigation();
                                 <label for="payment_due">PAYMENT DUE(DAYS)</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="payment_due" name="formData[payment_due]">
+                                <input type="text" class="form-control" id="payment_due" name="payment_due">
                             </div>
                         </div>
                     </div>
@@ -159,7 +158,7 @@ LayoutHelper::subNavigation();
                                 <label for="address_line1">LINE 1</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="address_line1" name="formData[line1]">
+                                <input type="text" class="form-control" id="address_line1" name="line1">
                             </div>
 
                         </div>
@@ -171,7 +170,7 @@ LayoutHelper::subNavigation();
                                 <label for="address_line2">LINE 2</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="address_line2" name="formData[line2]">
+                                <input type="text" class="form-control" id="address_line2" name="line2">
                             </div>
                         </div>
                     </div>
@@ -183,7 +182,7 @@ LayoutHelper::subNavigation();
                                 <label for="town">TOWN</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="town" name="formData[town]">
+                                <input type="text" class="form-control" id="town" name="town">
                             </div>
 
                         </div>
@@ -195,7 +194,7 @@ LayoutHelper::subNavigation();
                                 <label for="city">CITY</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="city" name="formData[city]">
+                                <input type="text" class="form-control" id="city" name="city">
                             </div>
                         </div>
                     </div>
@@ -207,7 +206,7 @@ LayoutHelper::subNavigation();
                                 <label for="postcode">POSTCODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="postcode" name="formData[post_code]">
+                                <input type="text" class="form-control" id="postcode" name="post_code">
                             </div>
 
                         </div>
@@ -219,7 +218,7 @@ LayoutHelper::subNavigation();
                                 <label for="contact_name">CONTACT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="contact_name" name="formData[contact_name]">
+                                <input type="text" class="form-control" id="contact_name" name="contact_name">
                             </div>
                         </div>
                     </div>
@@ -231,7 +230,7 @@ LayoutHelper::subNavigation();
                                 <label for="telephone">TELEPHONE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="telephone" name="formData[telephone]">
+                                <input type="text" class="form-control" id="telephone" name="telephone">
                             </div>
 
                         </div>
@@ -243,7 +242,7 @@ LayoutHelper::subNavigation();
                                 <label for="email">EMAIL</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="email" class="form-control" id="email" name="formData[email]">
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                         </div>
                     </div>
@@ -257,7 +256,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="formData[acc_name]">
+                                <input type="text" class="form-control" id="account_name" name="acc_name">
                             </div>
 
                         </div>
@@ -269,7 +268,7 @@ LayoutHelper::subNavigation();
                                 <label for="sort_code">SORT CODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="number" class="form-control" id="sort_code" name="formData[sort_code]">
+                                <input type="number" class="form-control" id="sort_code" name="sort_code">
                             </div>
                         </div>
                     </div>
@@ -281,7 +280,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_no">ACCOUNT NO.</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_no" name="formData[acc_no]">
+                                <input type="text" class="form-control" id="account_no" name="acc_no">
                             </div>
 
                         </div>
@@ -293,7 +292,7 @@ LayoutHelper::subNavigation();
                                 <label for="bank_name">BANK NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="bank_name" name="formData[bank_name]">
+                                <input type="text" class="form-control" id="bank_name" name="bank_name">
                             </div>
                         </div>
                     </div>
