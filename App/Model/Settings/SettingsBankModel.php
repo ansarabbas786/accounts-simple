@@ -180,6 +180,8 @@ class SettingsBankModel extends BaseModel
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
+
+
     }
 
     public static function findAll()

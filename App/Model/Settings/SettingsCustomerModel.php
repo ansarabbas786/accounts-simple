@@ -2,6 +2,7 @@
 
 namespace App\Model\Settings;
 
+use App\Helpers\Helper;
 use App\Model\BaseModel;
 use App\Model\Database;
 use App\Validator\CompanyValidator;
@@ -88,17 +89,41 @@ VALUES (:customer_id, :line1, :line2, :town, :city, :post_code, :country, :telep
 
     public static function update($data)
     {
+        $user_id = 1;
 
+
+        self::openConnection();
+
+        $tables = ['customer', 'customer_address'];
+
+        $extra_data = [
+            'user_id' => $user_id,
+            'customer_id' => (int)$data->customer_id,
+        ];
+
+        self::$query_data = array_merge((array)$data, $extra_data);
+
+        //exclude the customer_id from the query parameters
+        unset($data->customer_id);
+        self::$query = Helper::build_update_query($tables, $data);
+
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+
+
+        if (self::$stmt->rowCount() > 0) {
+            echo json_encode(['success' => true, 'message' => 'Customer updated successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh your page']);
+        }
     }
 
-    public
-    static function findById($id)
+    public static function findById($id)
     {
 
     }
 
-    public
-    static function findAll()
+    public static function findAll()
     {
         $user_id = 1;
 

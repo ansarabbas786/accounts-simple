@@ -2,6 +2,7 @@
 
 namespace App\Model\Settings;
 
+use App\Helpers\Helper;
 use App\Model\BaseModel;
 use App\Model\Database;
 use App\Validator\PayrollValidator;
@@ -20,10 +21,12 @@ class SettingsPayrollModel extends BaseModel
         self::openConnection();
 
         if (PayrollValidator::validate($data)) {
-            if (self::save($data) && $action == 'save') {
+            if ($action === 'save' && self::save($data)) {
                 return true;
-            } else {
+            } elseif ($action === 'update' && self::update($data)) {
                 //todo return database errors
+            } elseif ($action === 'delete' && self::delete($data)) {
+
             }
         } else {
             //todo return validation errors
@@ -33,7 +36,7 @@ class SettingsPayrollModel extends BaseModel
 
     public static function update($data)
     {
-        // TODO: Implement update() method.
+        exit('you are here lol!');
     }
 
     public static function save($data)
@@ -47,7 +50,7 @@ class SettingsPayrollModel extends BaseModel
             'user_id' => $user_id,
             'surname' => $data->surname,
             'forname' => $data->forname,
-            'dob' => '1994-10-10',
+            'dob' => Helper::to_mysql_date($data->dob),
             'gender' => $data->gender
         ];
 
@@ -71,16 +74,14 @@ class SettingsPayrollModel extends BaseModel
         self::$stmt->execute(self::$query_data);
 
 
-        self::$query = "INSERT INTO employee_work_info(employee_id, ni_number, start_date, end_date, leaving_date, reference, notes) VALUES (
-:employee_id, :ni_number, :start_date, :end_date, :leaving_date, :reference, :notes)";
+        self::$query = "INSERT INTO employee_work_info(employee_id, ni_number, start_date, leaving_date, notes) VALUES (
+:employee_id, :ni_number, :start_date, :leaving_date, :notes)";
 
         self::$query_data = [
             'employee_id' => $employee_id,
             'ni_number' => $data->ni_number,
-            'start_date' => '1993-3-3',
-            'end_date' => '1993-3-3',
-            'leaving_date' => '1993-3-3',
-            'reference' => $data->reference,
+            'start_date' => Helper::to_mysql_date($data->start_date),
+            'leaving_date' => Helper::to_mysql_date($data->leaving_date),
             'notes' => $data->notes
         ];
 
@@ -92,7 +93,7 @@ class SettingsPayrollModel extends BaseModel
 :employee_id, :bank_name, :acc_number, :acc_name, :sort_code
 )";
         self::$query_data = [
-            'employee_id'  => $employee_id,
+            'employee_id' => $employee_id,
             'bank_name' => $data->bank_name,
             'acc_number' => $data->acc_number,
             'acc_name' => $data->acc_name,
@@ -102,7 +103,11 @@ class SettingsPayrollModel extends BaseModel
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
-        exit('saved!');
+        if (self::$stmt->rowCount() > 0) {
+            echo json_encode(['success' => true, 'message' => 'New employee added successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh your page']);
+        }
     }
 
     public static function delete($id)
@@ -112,7 +117,21 @@ class SettingsPayrollModel extends BaseModel
 
     public static function findAll()
     {
-        // TODO: Implement findAll() method.
+        self::openConnection();
+        $user_id = 1;
+        $tables = ['employee', 'employee_address', 'employee_bank_details', 'employee_work_info'];
+        $from = Helper::build_tables_list($tables);
+        $where = Helper::build_where_clause_for_find($tables);
+        self::$query = "SELECT * FROM {$from} WHERE {$where}";
+
+        self::$query_data = [
+            'user_id' => $user_id,
+        ];
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+
+        $employees = self::$stmt->fetchAll(Database::FETCH_OBJ);
+        return $employees;
     }
 
     public static function findById($id)

@@ -180,9 +180,11 @@ $(function () {
     /*=============================Start OF Edit LOGIC=================================*/
 
 
+    var edit_btn = '';
     $("body").on("click", '.edit_btn', function (evt) {
         evt.preventDefault();
 
+        edit_btn = $(this);
         var tr = $(this).parent().parent();
         var form = $('#update_customer_form');
 
@@ -226,8 +228,52 @@ $(function () {
     $('#update_customer_form').submit(function (evt) {
         evt.preventDefault();
         if (!$(this).valid()) {
-            return;
+            return 0;
         }
+
+        var form = $(this);
+        var btn = $(this).find('button[type="submit"]');
+        var formObj = this;
+        var tr = edit_btn.parent().parent();
+
+        showSpiner(btn);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (response) {
+
+                if (response.success) {
+
+                    tr.find('td.credit-limit').text($(formObj.credit_limit).val());
+                    tr.find('td.supplier-id').text($(formObj.supplier_id).val());
+                    tr.find('td.payment-due').text($(formObj.payment_due).val());
+                    tr.find('td.payment-terms').text($(formObj.payment_terms).val());
+                    tr.find('td.line1').text($(formObj.line1).val());
+                    tr.find('td.line2').text($(formObj.line2).val());
+                    tr.find('td.town').text($(formObj.town).val());
+                    tr.find('td.city').text($(formObj.city).val());
+                    tr.find('td.website').text($(formObj.website).val());
+                    tr.find('td.fax').text($(formObj.fax).val());
+                    tr.find('td.country').text($(formObj.country).val());
+                    tr.find('td.email').text($(formObj.email).val());
+                    tr.find('td.name').text($(formObj.name).val());
+                    tr.find('td.mobile').text($(formObj.mobile).val());
+                    tr.find('td.post-code').text($(formObj.post_code).val());
+                    tr.find('td.sort-code').text($(formObj.sort_code).val());
+                    tr.find('td.telephone').text($(formObj.telephone).val());
+                    showMessage(response.message);
+                    $('#customer_edit_modal').modal('hide');
+                    form[0].reset();
+                } else {
+                    showMessage('Something went wrong please refresh your page!');
+                }
+            },
+            complete: function () {
+                hideSpinner(btn);
+            }
+        });
 
     });
 

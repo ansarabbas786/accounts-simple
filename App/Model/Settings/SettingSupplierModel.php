@@ -1,13 +1,13 @@
 <?php
 namespace App\Model\Settings;
 
+use App\Helpers\Helper;
 use App\Model\BaseModel;
 use App\Model\Database;
 use App\Validator\SupplierValidator;
 
 class SettingSupplierModel extends BaseModel
 {
-
     public static function openConnection()
     {
         self::$dbh = Database::dbh();
@@ -19,10 +19,12 @@ class SettingSupplierModel extends BaseModel
         self::openConnection();
 
         if (SupplierValidator::validate($data)) {
-            if (self::save($data) && $action == 'save') {
+            if ($action === 'save' && self::save($data)) {
                 return true;
-            } else {
+            } elseif ($action === 'update' && self::update($data)) {
                 //todo return database errors
+            } elseif ($action === 'delete' && self::delete($data)) {
+                //TODO: implement the delete logic here
             }
         } else {
             //todo return validation errors
@@ -31,30 +33,55 @@ class SettingSupplierModel extends BaseModel
 
     public static function update($data)
     {
-        // TODO: Implement update() method.
+        $user_id = 1;
+
+        self::openConnection();
+
+        $tables = ['supplier', 'supplier_address', 'supplier_bank_details'];
+
+        $extra_data = [
+            'user_id' => $user_id,
+            'supplier_id' => (int)$data->supplier_id,
+        ];
+
+        self::$query_data = array_merge((array)$data, $extra_data);
+
+        //exclude the customer_id from the query parameters
+        unset($data->supplier_id);
+        self::$query = Helper::build_update_query($tables, $data);
+
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+
+        if (self::$stmt->rowCount() > 0) {
+            echo json_encode(['success' => true, 'message' => 'Customer updated successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh your page']);
+        }
     }
 
     public static function save($data)
     {
         self::openConnection();
+        $user_id = 1;
 
-        self::$query = "INSERT INTO supplier(acc_ref, company_name, credeit_limit, payment_dues) VALUES (:acc_ref, :company_name, :credit_limit, :payment_dues)";
+        self::$query = "INSERT INTO supplier(user_id, company_name, credit_limit, payment_due) VALUES (:user_id, :company_name, :credit_limit, :payment_due)";
 
         self::$query_data = [
-            'acc_ref' => $data->acc_ref,
+            'user_id' => $user_id,
             'company_name' => $data->company_name,
             'credit_limit' => $data->credit_limit,
-            'payment_dues' => $data->payment_due
+            'payment_due' => $data->payment_due
         ];
 
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
 
-       $supplier_id = self::$dbh->lastInsertId();
+        $supplier_id = self::$dbh->lastInsertId();
 
 
-        self::$query = "INSERT INTO supplier_address(supplier_id, line1, line2, town, city, post_code, contact_name, tel, email) VALUES (:supplier_id, :line1, :line2, :town, :city, :post_code, :contact_name, :tel, :email)";
+        self::$query = "INSERT INTO supplier_address(supplier_id, line1, line2, town, city, post_code, contact_name, telephone, email) VALUES (:supplier_id, :line1, :line2, :town, :city, :post_code, :contact_name, :telephone, :email)";
 
 
         self::$query_data = [
@@ -65,7 +92,7 @@ class SettingSupplierModel extends BaseModel
             'city' => $data->city,
             'post_code' => $data->post_code,
             'contact_name' => $data->contact_name,
-            'tel' => $data->telephone,
+            'telephone' => $data->telephone,
             'email' => $data->email
         ];
 
@@ -86,18 +113,46 @@ class SettingSupplierModel extends BaseModel
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
-        exit('done');
+        if (self::$stmt->rowCount() > 0) {
+            echo json_encode(['success' => true, 'message' => 'New supplier added']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh you page!']);
+        }
 
     }
 
-    public static function delete($id)
+    public static function delete($data)
     {
-        // TODO: Implement delete() method.
+        self::openConnection();
+        $user_id = 1;
+        self::$query = "DELETE FROM supplier WHERE supplier.user_id = :user_id AND supplier.supplier_id = :supplier_id";
+        self::$query_data = [
+            'user_id' => $user_id,
+            'supplier_id' => (int)trim($data->id)
+        ];
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+
+        if (self::$stmt->rowCount() > 0) {
+            echo json_encode(['success' => true, 'message' => 'Supplier deleted successfully.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh you page!']);
+        }
     }
 
     public static function findAll()
     {
-        // TODO: Implement findAll() method.
+        self::openConnection();
+        $user_id = 1;
+        $tables = ['supplier', 'supplier_address', 'supplier_bank_details'];
+        $where = Helper::build_where_clause_for_find($tables);
+        $from = Helper::build_tables_list($tables);
+        self::$query = "SELECT * FROM {$from} WHERE {$where}";
+        self::$query_data = ['user_id' => $user_id];
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+        $customers = self::$stmt->fetchAll(Database::FETCH_OBJ);
+        return $customers;
     }
 
     public static function findById($id)

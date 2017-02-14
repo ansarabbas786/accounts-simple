@@ -1,15 +1,9 @@
 <?php
+use App\Helpers\Helper;
 use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingsPayrollModel;
 
 require_once "../vendor/autoload.php";
-
-
-if (isset($_POST['save'])) {
-    $data = (object)$_POST['formData'];
-
-    SettingsPayrollModel::processForm($data, 'save');
-}
 
 
 LayoutHelper::head();
@@ -43,7 +37,7 @@ LayoutHelper::subNavigation();
     <div class="row">
 
         <div class="col-xs-12 col-sm-4">
-            <button data-toggle="modal" data-target="#new_payroll_modal" class="bttn btn btn-primary"><b>NEW
+            <button data-toggle="modal" data-target="#new_payroll_modal" id="new_btn" class="bttn btn btn-primary"><b>NEW
                     EMPLOYEE</b></button>
         </div>
 
@@ -69,36 +63,43 @@ LayoutHelper::subNavigation();
                     </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="employee_list_body">
 
-                    <tr>
-                        <td class="text-center">001</td>
-                        <td class="text-left">ANDY KINGS</td>
-                        <td class="text-center">AB 51 51 02 C</td>
-                        <td class="text-center">02/05/2015</td>
-                        <td class="text-center"></td>
-                        <td class="text-center">
-
-                            <button data-toggle="modal" class="btn btn-primary edit_btn">EDIT</button>
-                            <button data-toggle="modal" class="btn btn-primary delete_btn">DELETE</button>
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-                        <td class="text-center">002</td>
-                        <td class="text-left">KATE BROOKS</td>
-                        <td class="text-center">BA 22 44 22 V</td>
-                        <td class="text-center">10/09/2016</td>
-                        <td class="text-center"></td>
-                        <td class="text-center">
-
-                            <button data-toggle="modal" class="btn btn-primary edit_btn">EDIT</button>
-                            <button data-toggle="modal" class="btn btn-primary delete_btn">DELETE</button>
-                        </td>
-
-                    </tr>
+                    <?php
+                    $employees = SettingsPayrollModel::findAll();
+                    foreach ($employees as $employee):
+                        ?>
+                        <tr>
+                            <td class="forname text-center" hidden><?= $employee->forname ?></td>
+                            <td class="dob text-center" hidden><?= $employee->dob ?></td>
+                            <td class="gender text-center" hidden><?= $employee->gender ?></td>
+                            <td class="line2 text-center" hidden><?= $employee->line1 ?></td>
+                            <td class="line2 text-center" hidden><?= $employee->line2 ?></td>
+                            <td class="town text-center" hidden><?= $employee->town ?></td>
+                            <td class="city text-center" hidden><?= $employee->city ?></td>
+                            <td class="post-code text-center" hidden><?= $employee->post_code ?></td>
+                            <td class="telephone text-center" hidden><?= $employee->telephone ?></td>
+                            <td class="email text-center" hidden><?= $employee->email ?></td>
+                            <td class="notes text-center" hidden><?= $employee->notes ?></td>
+                            <td class="bank-name text-center" hidden><?= $employee->bank_name ?></td>
+                            <td class="acc-number text-center" hidden><?= $employee->acc_number ?></td>
+                            <td class="sort-code text-center" hidden><?= $employee->sort_code ?></td>
+                            <td class="acc_name text-center" hidden><?= $employee->acc_name ?></td>
+                            <td class="employee-id text-center"><?= Helper::number_format($employee->employee_id, 5) ?></td>
+                            <td class="surname text-left"><?= $employee->surname ?></td>
+                            <td class="ni-number text-center"><?= $employee->ni_number ?></td>
+                            <td class="start-date text-center"><?= $employee->start_date ?></td>
+                            <td class="leaving-date text-center"><?= $employee->leaving_date ?></td>
+                            <td class="text-center">
+                                <button data-toggle="modal" data-employeeid="<?= $employee->employee_id ?>"
+                                        class="btn btn-primary edit_btn">EDIT
+                                </button>
+                                <button data-toggle="modal" data-id="<?= $employee->employee_id ?>"
+                                        class="btn btn-primary delete_btn">DELETE
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
 
                 </table>
@@ -123,7 +124,7 @@ LayoutHelper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <form action="routes.php?action=save" id="employee_new_form" method="post">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -131,7 +132,7 @@ LayoutHelper::subNavigation();
                                 <label for="surname">SURNAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="surname" name="formData[surname]">
+                                <input type="text" autofocus class="form-control" id="surname" name="surname">
                             </div>
 
                         </div>
@@ -143,7 +144,7 @@ LayoutHelper::subNavigation();
                                 <label for="forname">FORNAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="forname" name="formData[forname]">
+                                <input type="text" class="form-control" id="forname" name="forname">
                             </div>
                         </div>
                     </div>
@@ -158,8 +159,8 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
 
-                                <input type="text" class="form-control date_input" name="formData[dob]"
-                                       placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="dob"
+                                       placeholder="yyyy/mm/dd">
                             </div>
 
                         </div>
@@ -175,11 +176,11 @@ LayoutHelper::subNavigation();
 
 
                                 <label for="mail" class="radio_label">MALE
-                                    <input type="radio" class="" value="m" id="mail" name="formData[gender]">
+                                    <input type="radio" class="" checked value="m" id="mail" name="gender">
                                 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <label for="femail" class="radio_label">FEMALE
-                                    <input type="radio" class="" id="femail" value="f" name="formData[gender]">
+                                    <input type="radio" class="" id="femail" value="f" name="gender">
                                 </label>
 
                             </div>
@@ -198,7 +199,7 @@ LayoutHelper::subNavigation();
                                 <label for="line1">LINE 1</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="line1" name="formData[line1]">
+                                <input type="text" class="form-control" id="line1" name="line1">
                             </div>
 
                         </div>
@@ -210,7 +211,7 @@ LayoutHelper::subNavigation();
                                 <label for="line2">LINE 2</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="line2" name="formData[line2]">
+                                <input type="text" class="form-control" id="line2" name="line2">
                             </div>
                         </div>
                     </div>
@@ -225,7 +226,7 @@ LayoutHelper::subNavigation();
                                 <label for="town">TOWN</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="town" name="formData[town]">
+                                <input type="text" class="form-control" id="town" name="town">
                             </div>
 
                         </div>
@@ -237,7 +238,7 @@ LayoutHelper::subNavigation();
                                 <label for="city">CITY</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="city" name="formData[city]">
+                                <input type="text" class="form-control" id="city" name="city">
                             </div>
                         </div>
                     </div>
@@ -252,7 +253,7 @@ LayoutHelper::subNavigation();
                                 <label for="post_code">POSTCODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="post_code" name="formData[post_code]">
+                                <input type="text" class="form-control" id="post_code" name="post_code">
                             </div>
 
                         </div>
@@ -264,7 +265,7 @@ LayoutHelper::subNavigation();
                                 <label for="telephone">TELEPHONE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="telephone" name="formData[telephone]">
+                                <input type="text" class="form-control" id="telephone" name="telephone">
                             </div>
                         </div>
                     </div>
@@ -278,7 +279,7 @@ LayoutHelper::subNavigation();
                                 <label for="email">EMAIL</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="email" class="form-control" id="email" name="formData[email]">
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
 
                         </div>
@@ -297,7 +298,7 @@ LayoutHelper::subNavigation();
                                 <label for="ni_number">NI NUMBER</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="ni_number" name="formData[ni_number]">
+                                <input type="text" class="form-control" id="ni_number" name="ni_number">
                             </div>
 
                         </div>
@@ -309,8 +310,8 @@ LayoutHelper::subNavigation();
                                 <label for="start_date">START DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="formData[start_date]"
-                                       placeholder="dd/mm/yyyy">
+                                <input type="text" class="form-control date_input" name="start_date"
+                                       placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -324,7 +325,7 @@ LayoutHelper::subNavigation();
                                 <label for="leaving_date">LEAVING DATE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control date_input" name="formData[leaving_date]"
+                                <input type="text" class="form-control date_input" name="leaving_date"
                                        placeholder="dd/mm/yyyy">
                             </div>
 
@@ -337,7 +338,7 @@ LayoutHelper::subNavigation();
                                 <label for="reference">REFERENCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="reference" name="formData[reference]">
+                                <input type="text" class="form-control" readonly id="employee-id" name="employee_id">
                             </div>
                         </div>
                     </div>
@@ -351,7 +352,7 @@ LayoutHelper::subNavigation();
                                 <label for="notes">NOTES</label>
                             </div>
                             <div class="col-xs-7 col-sm-10">
-                                <textarea name="formData[notes]" id="notes" class="form-control"></textarea>
+                                <textarea name="notes" id="notes" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -369,7 +370,7 @@ LayoutHelper::subNavigation();
                                 <label for="bank_name">BANK NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="bank_name" name="formData[bank_name]">
+                                <input type="text" class="form-control" id="bank_name" name="bank_name">
                             </div>
 
                         </div>
@@ -381,7 +382,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_number">ACCOUNT NUMBER</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_number" name="formData[acc_number]">
+                                <input type="text" class="form-control" id="account_number" name="acc_number">
                             </div>
                         </div>
                     </div>
@@ -396,7 +397,7 @@ LayoutHelper::subNavigation();
                                 <label for="sort_code">SORT CODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="sort_code" name="formData[sort_code]">
+                                <input type="text" class="form-control" id="sort_code" name="sort_code">
                             </div>
 
                         </div>
@@ -408,14 +409,16 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="formData[acc_name]">
+                                <input type="text" class="form-control" id="account_name" name="acc_name">
                             </div>
                         </div>
                     </div>
                     <!--11th row ends here-->
                     <div class="clearfix"></div>
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" class="btn btn-primary" name="save">ADD</button>
+                        <button type="submit" class="btn btn-primary" name="save">ADD <img src="images/spin.svg"
+                                                                                           class="hide_spinner">
+                        </button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 
@@ -441,7 +444,7 @@ LayoutHelper::subNavigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="">
+                <form action="routes.php?action=update" method="post" id="employee-update-form">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -449,7 +452,7 @@ LayoutHelper::subNavigation();
                                 <label for="surname">SURNAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="surname" name="surname">
+                                <input type="text" autofocus class="form-control" id="surname" name="surname">
                             </div>
 
                         </div>
@@ -491,9 +494,8 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
 
-
                                 <label for="mail" class="radio_label">MALE
-                                    <input type="radio" class="" id="mail" name="vat_registered">
+                                    <input type="radio" class="" checked id="mail" name="vat_registered">
                                 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <label for="femail" class="radio_label">FEMALE
@@ -643,7 +645,7 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
                                 <input type="text" class="form-control date_input" name="leaving_date"
-                                       placeholder="dd/mm/yyyy">
+                                       placeholder="YYY/mm/dd">
                             </div>
 
                         </div>
@@ -655,7 +657,7 @@ LayoutHelper::subNavigation();
                                 <label for="reference">REFERENCE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="reference" name="reference">
+                                <input type="text" class="form-control" readonly id="employee-id" name="employee_id">
                             </div>
                         </div>
                     </div>
@@ -733,7 +735,8 @@ LayoutHelper::subNavigation();
                     <!--11th row ends here-->
                     <div class="clearfix"></div>
                     <div class="form-group modal_buttons text-right">
-                        <button type="submit" class="btn btn-primary">UPDATE</button>
+                        <button type="submit" class="btn btn-primary">UPDATE <img src="images/spin.svg"
+                                                                                  class="hide_spinner"></button>
                         <button data-dismiss="modal" class="btn btn-primary">CLOSE</button>
                     </div>
 
@@ -747,41 +750,14 @@ LayoutHelper::subNavigation();
 ========================================-->
 
 
-<!--confirm modal starts here
-======================================-->
 
-<div class="modal fade" id="confirm_modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header danger">
-                <button class="close" data-dismiss="modal">&times;</button>
-                <h3>CONFIRM</h3>
-            </div>
-            <div class="modal-body">
-                <br><br>
-                <p class="lead text-center"><b>ARE YOU SURE YOU WANT TO DELETE THIS CUSTOMER ?</b></p>
-
-
-                <div class="form-group modal_buttons text-right">
-                    <button class="btn btn-danger">YES</button>
-                    <button data-dismiss="modal" class="btn btn-primary">NO</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!--confirm modal ends here
-======================================-->
 
 
 <!--website footer starts here
 ==============================-->
 <footer class="container-fluid">
     <div class="row text-center">
-        <small>COPYRIGHT SIMPLE ACCOUNTS &copy; ALL RIGHTS RESERVED.</small>
+            <small>COPYRIGHT SIMPLE ACCOUNTS &copy; ALL RIGHTS RESERVED.</small>
     </div>
 </footer>
 <!--website footer ends here
