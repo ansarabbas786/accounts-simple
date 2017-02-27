@@ -1,5 +1,7 @@
 <?php
 namespace App\Model;
+use PDO;
+
 class Database extends \PDO
 {
     private static $dsn = 'mysql:dbhost=localhost;dbname=accounts_simple';
@@ -8,11 +10,12 @@ class Database extends \PDO
 
     public static function dbh()
     {
-        $dbh = new \PDO(self::$dsn, self::$db_user, self::$db_password);
+        $dbh = new PDO(self::$dsn, self::$db_user, self::$db_password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         $dbh->query("SET NAMES 'utf8'");
         return $dbh;
     }
 }
+
 ?>
 
 

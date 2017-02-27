@@ -6,6 +6,12 @@ use Respect\Validation\Rules\Type;
 class Helper
 {
 
+    public static function rootPath()
+    {
+        return $_SERVER['DOCUMENT_ROOT'];
+    }
+
+
     public static function number_format($number, $length)
     {
         return sprintf("%0{$length}d", $number);
@@ -98,6 +104,24 @@ class Helper
     {
         $date = strtotime($date);
         return date('Y-m-d', $date);
+    }
+
+    public static function process_image($imageInfo)
+    {
+
+        if ($imageInfo->type == 'image/png' || $imageInfo->type == 'image/jpg' || $imageInfo->type == 'image/jpeg' || $imageInfo == 'image/gif') {
+
+            $imagePath = 'images/' . $imageInfo->name;
+
+            if (move_uploaded_file($imageInfo->tmp_name, $imagePath)) {
+                return $imagePath;
+            } else {
+                return 'file could be moved!';
+            }
+
+        } else {
+            return false;
+        }
     }
 }
 

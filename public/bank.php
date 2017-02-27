@@ -394,13 +394,18 @@ LayoutHelper::navigation();
                             <tr>
                                 <td class="type_value">
                                     <ul class="dropdown_parent">
-                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                        <!--                                    A drop down of 5 fixed values, Customer Receipt, Receipt, Supplier payment (minus), Expense Payment (minus) an transfer (minus from bank account, plus into bank account)
+                                        -->
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                                                data-toggle="dropdown"><span
                                                         class="glyphicon glyphicon-arrow-down"></span> </a>
 
                                             <ul class="dropdown-menu">
-                                                <li>Type 1</li>
-                                                <li>Type 2</li>
-                                                <li>Type 3</li>
+                                                <li>Receipt</li>
+                                                <li>Transfer</li>
+                                                <li>Customer Receipt</li>
+                                                <li>Supplier Payment</li>
+                                                <li>Expense Payment</li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -529,7 +534,7 @@ LayoutHelper::navigation();
             </div>
 
             <div class="modal-body clearfix">
-                <form action="">
+                <form action="routes.php?action=transaction" method="post" id="bank_transaction_form">
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
@@ -538,13 +543,18 @@ LayoutHelper::navigation();
                             </div>
                             <div class="col-xs-7">
                                 <ul class="dropdown_parent">
+<!--                                    A drop down of 5 fixed values, Customer Receipt, Receipt, Supplier payment (minus), Expense Payment (minus) an transfer (minus from bank account, plus into bank account)
+-->
                                     <li class="dropdown"><a href="#" class="dropdown-toggle"
                                                             data-toggle="dropdown"><span
                                                     class="glyphicon glyphicon-arrow-down"></span> </a>
 
                                         <ul class="dropdown-menu">
-                                            <li>inv</li>
-                                            <li>crd</li>
+                                            <li>Transfer</li>
+                                            <li>Receipt</li>
+                                            <li>Customer Receipt</li>
+                                            <li>Supplier Payment</li>
+                                            <li>Expense Payment</li>
                                         </ul>
                                     </li>
                                 </ul>

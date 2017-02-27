@@ -41,8 +41,9 @@ $(function () {
             url: form.attr('action'),
             type: form.attr('method'),
             data: form.serializeArray(),
+            dataType: 'json',
             success: function (response) {
-                if (response > 0) {
+                if (response.success) {
 
                     var reference = $('#reference').val();
                     var name = $('#name').val();
@@ -54,22 +55,24 @@ $(function () {
                         "<td class='text-center'><button data-toggle='modal' data-analysisid='" + response + "' class='btn btn-primary edit_btn'>EDIT  </button> " +
                         ' <button data-toggle="modal" data-id="' + response + '" class="btn btn-primary delete_btn"> DELETE </button></td></tr>');
 
-                    form[0].reset();
-
+                    showMessage(response.message);
+                    form.trigger('reset');
                 } else {
-                    console.log('nothing!');
+                    showMessage(response.message);
                 }
-            },
+            }
+
+            ,
             error: function (error) {
                 console.log(error.status);
-            },
+            }
+            ,
             complete: function () {
-
                 hideSpinner(btn);
                 $('#new_analysis_modal').modal('hide');
-                showMessage('New Analysis added.');
             }
-        });
+        })
+        ;
         showSpiner(btn);
     });
 

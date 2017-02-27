@@ -110,9 +110,23 @@ class SettingsPayrollModel extends BaseModel
         }
     }
 
-    public static function delete($id)
+    public static function delete($data)
     {
-        // TODO: Implement delete() method.
+        self::openConnection();
+        $user_id = 1;
+        self::$query = "DELETE FROM employee WHERE employee.user_id = :user_id AND employee.employee_id= :employee_id";
+        self::$query_data = [
+            'user_id' => $user_id,
+            'employee_id' => (int)trim($data->id)
+        ];
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+
+        if (self::$stmt->rowCount() > 0) {
+            echo json_encode(['success' => true, 'message' => 'Employee deleted successfully.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh you page!']);
+        }
     }
 
     public static function findAll()

@@ -53,7 +53,7 @@ class SettingSupplierModel extends BaseModel
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
-        if (self::$stmt->rowCount() > 0) {
+        if (self::$stmt->rowCount() >= 0) {
             echo json_encode(['success' => true, 'message' => 'Customer updated successfully!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh your page']);
@@ -113,7 +113,7 @@ class SettingSupplierModel extends BaseModel
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
-        if (self::$stmt->rowCount() > 0) {
+        if (self::$stmt->rowCount() >= 0) {
             echo json_encode(['success' => true, 'message' => 'New supplier added']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh you page!']);

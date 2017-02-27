@@ -60,7 +60,13 @@ class SettingsAnalysisModel extends BaseModel
 
         self::$stmt->execute(self::$query_data);
 
-        return self::$dbh->lastInsertId();
+        $affected_rows = self::$stmt->rowCount();
+
+        if ($affected_rows >= 0) {
+            echo json_encode(['success' => true, 'message' => 'Analysis saved successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'something went wrong. Please try again!']);
+        }
     }
 
     public static function update($data)
@@ -77,6 +83,14 @@ class SettingsAnalysisModel extends BaseModel
 
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
+
+        $affected_rows = self::$stmt->rowCount();
+
+        if ($affected_rows >= 0) {
+            echo json_encode(['success' => true, 'message' => 'Analysis updated successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'something went wrong. Please try again!']);
+        }
     }
 
     public static function delete($data)
@@ -92,6 +106,7 @@ class SettingsAnalysisModel extends BaseModel
         ];
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
+
     }
 
     public static function openConnection()

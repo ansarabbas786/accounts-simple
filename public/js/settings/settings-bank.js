@@ -207,37 +207,45 @@ $(function () {
             url: form.attr('action'),
             type: form.attr('method'),
             data: form.serialize(),
+            dataType: 'json',
             success: function (response) {
-                hideSpinner(btn);
 
-                var parent_tr = update_btn.parent().parent();
-                parent_tr.find('.acc-name').text($(formObj.acc_name).val());
-                parent_tr.find('td.bank_id').text($(formObj.bank_id).val());
-                parent_tr.find('td.bank-name').text($(formObj.bank_name).val());
-                parent_tr.find('td.acc-no').text($(formObj.acc_no).val());
-                parent_tr.find('td.start-balance').text($(formObj.start_balance).val());
-                parent_tr.find('td.line1').text($(formObj.line1).val());
-                parent_tr.find('td.line2').text($(formObj.line2).val());
-                parent_tr.find('td.town').text($(formObj.town).val());
-                parent_tr.find('td.city').text($(formObj.city).val());
-                parent_tr.find('td.country').text($(formObj.country).val());
-                parent_tr.find('td.post-code').text($(formObj.post_code).val());
-                parent_tr.find('td.contact-name').text($(formObj.contact_name).val());
-                parent_tr.find('td.contact-tel').text($(formObj.telephone).val());
-                parent_tr.find('td.fax').text($(formObj.fax).val());
-                parent_tr.find('td.email').text($(formObj.email).val());
-                parent_tr.find('td.sort-code').text($(formObj.sort_code).val());
-                parent_tr.find('td.notes').text($(formObj.notes).val());
+                if (response.success) {
+
+                    $('#bank_new_modal').modal('hide');
 
 
-                $('#bank_edit_modal').modal('hide');
-                showMessage('Bank Updated.');
+                    var parent_tr = update_btn.parent().parent();
+                    parent_tr.find('.acc-name').text($(formObj.acc_name).val());
+                    parent_tr.find('td.bank_id').text($(formObj.bank_id).val());
+                    parent_tr.find('td.bank-name').text($(formObj.bank_name).val());
+                    parent_tr.find('td.acc-no').text($(formObj.acc_no).val());
+                    parent_tr.find('td.start-balance').text($(formObj.start_balance).val());
+                    parent_tr.find('td.line1').text($(formObj.line1).val());
+                    parent_tr.find('td.line2').text($(formObj.line2).val());
+                    parent_tr.find('td.town').text($(formObj.town).val());
+                    parent_tr.find('td.city').text($(formObj.city).val());
+                    parent_tr.find('td.country').text($(formObj.country).val());
+                    parent_tr.find('td.post-code').text($(formObj.post_code).val());
+                    parent_tr.find('td.contact-name').text($(formObj.contact_name).val());
+                    parent_tr.find('td.contact-tel').text($(formObj.telephone).val());
+                    parent_tr.find('td.fax').text($(formObj.fax).val());
+                    parent_tr.find('td.email').text($(formObj.email).val());
+                    parent_tr.find('td.sort-code').text($(formObj.sort_code).val());
+                    parent_tr.find('td.notes').text($(formObj.notes).val());
+
+
+                    $('#bank_edit_modal').modal('hide');
+                    showMessage(response.message);
+                } else {
+                    showMessage(response.message);
+                }
             },
             error: function () {
 
             },
             complete: function () {
-
+                hideSpinner(btn);
             }
         });
 
@@ -279,7 +287,7 @@ $(function () {
             type: form.attr('method'),
             data: form.serialize(),
             success: function (response) {
-                showMessage('<h2 class="text-danger">Analysis deleted.</h2>');
+                showMessage('<h2 class="text-danger">Bank deleted successfully!</h2>');
             },
             error: function (response) {
 

@@ -1,24 +1,11 @@
 <?php
+use App\Helpers\Helper;
 use App\Helpers\LayoutHelper;
 use App\Model\Settings\SettingsCompanyModel;
 use App\Validator\CompanyValidator;
 
 require_once "../vendor/autoload.php";
 
-if (isset($_POST['submit'])) {
-
-    $data = (object) $_POST['formData'];
-
-    if (SettingsCompanyModel::processForm($data, 'update')) {
-
-        $errors = CompanyValidator::getErrors();
-
-        if (CompanyValidator::has('name')) {
-            echo $errors->name;
-        }
-        exit('good to go');
-    }
-}
 
 LayoutHelper::head();
 LayoutHelper::css('css/settings-company.css');
@@ -49,14 +36,19 @@ LayoutHelper::subNavigation();
             <h3>BUSINESS DETAILS</h3>
         </div>
     </div>
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="form-horizontal company_form">
+    <?php
+    $company = SettingsCompanyModel::findAll();
+    ?>
+
+    <form action="routes.php?action=update" enctype="multipart/form-data" id="company-update-form" method="post" class="form-horizontal company_form">
         <div class="row">
             <div class="col-xs-12">
                 <div class="col-xs-12 col-sm-2 col-md-2">
                     <label for="name" class="h3">NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-10 col-md-10">
-                    <input type="text" id="name" name="formData[name]" class="form-control h3 field_adjust">
+                    <input type="text" value="<?= $company->name ?>" id="name" name="name"
+                           class="form-control h3 field_adjust">
                 </div>
             </div>
 
@@ -66,7 +58,7 @@ LayoutHelper::subNavigation();
                     <label for="email" class="h3">EMAIL</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="formData[email]" class="form-control h3">
+                    <input type="text" name="email" value="<?= $company->email ?>" class="form-control h3">
                 </div>
             </div>
 
@@ -75,7 +67,7 @@ LayoutHelper::subNavigation();
                     <label for="telephone" class="h3">TELEPHONE</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="formData[telephone]" class="form-control h3">
+                    <input type="text" name="telephone" value="<?= $company->telephone ?>" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -83,7 +75,7 @@ LayoutHelper::subNavigation();
                     <label for="fax" class="h3">FAX</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="formData[fax]" class="form-control h3">
+                    <input type="text" name="fax" value="<?= $company->fax ?>" class="form-control h3">
                 </div>
             </div>
 
@@ -92,7 +84,8 @@ LayoutHelper::subNavigation();
                     <label for="website" class="h3">WEBSITE</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="website" name="formData[website]" class="form-control h3">
+                    <input type="text" id="website" value="<?= $company->website ?>" name="website"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -109,7 +102,8 @@ LayoutHelper::subNavigation();
                     <label for="address_line1" class="h3">LINE 1</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="address_line1" name="formData[line1]" class="form-control h3">
+                    <input type="text" id="address_line1" value="<?= $company->line1 ?>" name="line1"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -118,7 +112,8 @@ LayoutHelper::subNavigation();
                     <label for="address_line2" class="h3">LINE 2</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="address_line2" name="formData[line2]" class="form-control h3">
+                    <input type="text" id="address_line2" name="line2" value="<?= $company->line2 ?>"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -127,7 +122,7 @@ LayoutHelper::subNavigation();
                     <label for="town" class="h3">TOWN</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="town" name="formData[town]" class="form-control h3">
+                    <input type="text" id="town" value="<?= $company->town ?>" name="town" class="form-control h3">
                 </div>
             </div>
 
@@ -135,62 +130,62 @@ LayoutHelper::subNavigation();
                 <div class="col-xs-12 col-sm-5">
                     <label for="city" class="h3">CITY</label>
                 </div>
-                <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="city" name="formData[city]" class="form-control h3">
-                </div>
+                <divj class="col-xs-12 col-sm-7">
+                    <input type="text" id="city" name="city" value="<?= $company->city ?>" class="form-control h3">
             </div>
+        </div>
 
 
-            <div class="col-xs-12 col-sm-6">
-                <div class="col-xs-12 col-sm-5">
-                    <label for="postcode" class="h3">POSTCODE</label>
-                </div>
-                <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="postcode" name="formData[post_code]" class="form-control h3">
-                </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-5">
+                <label for="postcode" class="h3">POSTCODE</label>
             </div>
-
-            <div class="col-xs-12 col-sm-6">
-                <div class="col-xs-12 col-sm-5">
-                    <label for="country" class="h3">COUNTRY</label>
-                </div>
-                <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="country" name="formData[country]" class="form-control h3">
-                </div>
+            <div class="col-xs-12 col-sm-7">
+                <input type="text" id="postcode" name="post_code" value="<?= $company->post_code ?>"
+                       class="form-control h3">
             </div>
+        </div>
 
-            <!--
-                            <div class="col-xs-12">
-                                <div class="col-xs-12 col-sm-2 col-md-2">
-                                    <label for="address" class="h3">ADDRESS</label>
-                                </div>
-                                <div class="col-xs-12 col-sm-10 col-md-10">
-                                    <input type="text" class="form-control h3 field_adjust">
-                                </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-5">
+                <label for="country" class="h3">COUNTRY</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+                <input type="text" id="country" name="country" class="form-control h3" value="<?= $company->country ?>">
+            </div>
+        </div>
+
+        <!--
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-2 col-md-2">
+                                <label for="address" class="h3">ADDRESS</label>
                             </div>
-            -->
+                            <div class="col-xs-12 col-sm-10 col-md-10">
+                                <input type="text" class="form-control h3 field_adjust">
+                            </div>
+                        </div>
+        -->
 
 
-            <!--            =========-->
-            <!--      IMAGE     -->
-            <!--           =======-->
-            <div class="col-xs-12 imgg">
-                <img src="images/user_img.jpg" alt="" class="img-responsive business_logo">
+        <!--            =========-->
+        <!--      IMAGE     -->
+        <!--           =======-->
+        <div class="col-xs-12 imgg">
+            <img src="<?= $company->logo_path ?>" alt="" class="img-responsive business_logo">
+        </div>
+        <!--            IMAGE========
+              ===========================
+            ==============================-->
+        <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-6 text-right">
+                <label for="logo" class="h3">BUSINESS LOGO</label>
             </div>
-            <!--            IMAGE========
-                  ===========================
-                ==============================-->
-            <div class="col-xs-12">
-                <div class="col-xs-12 col-sm-6 text-right">
-                    <label for="logo" class="h3">BUSINESS LOGO</label>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="col-xs-12 col-sm-6 text-left" id="file">
-
-                        <input type="file" name="formData[image]" class="form-control h3 business_upload_field">
-                    </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 text-left" id="file">
+                    <input type="file" name="logo" class="form-control h3 business_upload_field">
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="row hdng">
@@ -209,8 +204,9 @@ LayoutHelper::subNavigation();
                     <label for="start-date" class="h3">START DATE</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" class="form-control h3 date_input" name="formData[start_date]"
-                           placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control h3 date_input" name="start_date"
+                           placeholder="dd/mm/yyyy"
+                           value="<?= date('d/m/Y', strtotime($company->start_date)) ?>">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -218,8 +214,9 @@ LayoutHelper::subNavigation();
                     <label for="end-date" class="h3">END DATE</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" class="form-control h3 date_input" name="formData[end_date]"
-                           placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control h3 date_input" name="end_date"
+                           placeholder="dd/mm/yyyy"
+                           value="<?= date('d/m/Y', strtotime($company->end_date)) ?>">
                 </div>
             </div>
 
@@ -229,7 +226,8 @@ LayoutHelper::subNavigation();
                     <label for="registration_number" class="h3">COMPANY REG. NO.</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" class="form-control h3" name="formData[registration_no]">
+                    <input type="text" class="form-control h3" value="<?= $company->registration_no ?>"
+                           name="registration_no">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -237,7 +235,8 @@ LayoutHelper::subNavigation();
                     <label for="tax_ref" class="h3">UNIQUE TAX REF.</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="formData[unique_tax_ref]" class="form-control h3">
+                    <input type="text" name="unique_tax_ref" value="<?= $company->unique_tax_ref ?>"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -248,16 +247,17 @@ LayoutHelper::subNavigation();
                         VAT REGISTERED?
                     </label>
                 </div>
+                <div data-vatstatus="<?= $company->vat_status ?>" id="vat-db-status"></div>
                 <div class="col-xs-6 col-sm-9 text-left">
 
                     <!--                   <div class="col-xs-12 col-sm-6">-->
                     <label for="yes" class="radio_label">YES
-                        <input type="radio" class="" id="yes" value="1" name="formData[vat_status]">
+                        <input type="radio" class="" id="yes" value="1" name="vat_status">
                     </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <!--                   </div>-->
                     <!--                   <div class="col-xs-12 col-sm-6">-->
                     <label for="no" class="radio_label">NO
-                        <input type="radio" class="" checked id="no" value="0" name="formData[vat_status]">
+                        <input type="radio" class="" id="no" value="0" name="vat_status">
                     </label>
                     <!--                   </div>-->
 
@@ -271,7 +271,9 @@ LayoutHelper::subNavigation();
                         <label for="start-date" class="h3">VAT REG. NO.</label>
                     </div>
                     <div class="col-xs-12 col-sm-7">
-                        <input type="text" class="form-control h3" name="formData[vat_reg_no]">
+                        <input type="text" class="form-control h3"
+                               value="<?php echo isset($company->vat_reg_no) ? $company->vat_reg_no : ''; ?>"
+                               name="vat_reg_no">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6">
@@ -284,14 +286,15 @@ LayoutHelper::subNavigation();
                                             class="glyphicon glyphicon-arrow-down"></span> </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>vat scheme 1</li>
-                                    <li>vat scheme 2</li>
-                                    <li>vat scheme 3</li>
+                                    <li>VAT Cash Accounting</li>
+                                    <li>Standard VAT</li>
+                                    <li>Flat Rate</li>
+                                    <li>Other</li>
                                 </ul>
                             </li>
                         </ul>
                         <input type="text" class="form-control custom_hidden" id="vat_scheme"
-                               name="formData[vat_scheme]">
+                               name="vat_scheme" value="<?= $company->vat_scheme ?>">
                     </div>
                 </div>
             </div>
@@ -309,7 +312,7 @@ LayoutHelper::subNavigation();
                     <label for="start-date" class="h3">ACCOUNT NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="formData[acc_name]" class="form-control h3">
+                    <input type="text" name="acc_name" value="<?= $company->acc_name ?>" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -317,7 +320,7 @@ LayoutHelper::subNavigation();
                     <label for="end-date" class="h3">ACCOUNT NUMBER</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="formData[acc_number]" class="form-control h3">
+                    <input type="text" name="acc_number" value="<?= $company->acc_number ?>" class="form-control h3">
                 </div>
             </div>
 
@@ -326,7 +329,7 @@ LayoutHelper::subNavigation();
                     <label for="start-date" class="h3">SORT CODE</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="formData[sort_code]" class="form-control h3">
+                    <input type="text" name="sort_code" value="<?= $company->sort_code ?>" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -334,7 +337,7 @@ LayoutHelper::subNavigation();
                     <label for="end-date" class="h3">BANK NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="formData[bank_name]" class="form-control h3">
+                    <input type="text" name="bank_name" value="<?= $company->bank_name ?>" class="form-control h3">
                 </div>
             </div>
         </div>
@@ -344,137 +347,48 @@ LayoutHelper::subNavigation();
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-5">
-                    <label for="name" class="h3">1. &nbsp; NAME</label>
-                </div>
-                <div class="col-xs-12 col-md-7">
-                    <input type="text" name="owner_name[]" class="form-control h3">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">D.O.B</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_dob[]" class="form-control h3 date_input"
-                           placeholder="dd/mm/yyyy">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">N.I.N.O</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="owner_ni_no[]" class="form-control h3">
-                </div>
-            </div>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-5">
-                    <label for="name" class="h3">2. &nbsp; NAME</label>
-                </div>
-                <div class="col-xs-12 col-md-7">
-                    <input type="text" name="owner_name" class="form-control h3">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">D.O.B</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input"
-                           placeholder="dd/mm/yyyy">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">N.I.N.O</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
-                </div>
-            </div>
+            <?php
+            $owners = SettingsCompanyModel::findAllOwners();
 
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-5"><label for="name" class="h3">3. &nbsp; NAME</label>
-                </div>
-                <div class="col-xs-12 col-md-7"><input name="formData[][owner_name]" type="text"
-                                                       class="form-control h3">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">D.O.B</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input"
-                           placeholder="dd/mm/yyyy">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">N.I.N.O</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
-                </div>
-            </div>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-5">
-                    <label for="name" class="h3">4. &nbsp; NAME</label>
-                </div>
-                <div class="col-xs-12 col-md-7">
-                    <input type="text" name="formData[][owner_name]" class="form-control h3">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
+            foreach ($owners as $owner):
+                ?>
                 <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">D.O.B</label>
+                    <div class="col-xs-12 col-md-5">
+                        <label for="name" class="h3"> <?= $owner->company_owner_id ?>. &nbsp; NAME</label>
+                    </div>
+                    <div class="col-xs-12 col-md-7">
+                        <input type="text" name="owner_name[]" value="<?= $owner->owner_name ?>"
+                               class="form-control h3">
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input"
-                           placeholder="dd/mm/yyyy">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
                 <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">N.I.N.O</label>
+                    <div class="col-xs-12 col-md-4">
+                        <label for="name" class="h3">D.O.B</label>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <input type="text" name="dob[]"
+                               value="<?= date('d/m/Y', strtotime($owner->dob)) ?>"
+                               class="form-control h3 date_input"
+                               placeholder="dd/mm/yyyy">
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 col-md-4">
+                        <label for="name" class="h3">N.I.N.O</label>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <input type="text" name="ni_number[]"
+                               value="<?= $owner->ni_number ?>"
+                               class="form-control h3">
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-5">
-                    <label for="name" class="h3">5. &nbsp; NAME</label>
-                </div>
-                <div class="col-xs-12 col-md-7">
-                    <input type="text" name="formData[][owner_name]" class="form-control h3">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-sx-12 col-md-4">
-                    <label for="name" class="h3">D.O.B</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_dob]" class="form-control h3 date_input"
-                           placeholder="dd/mm/yyyy">
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 col-md-4">
-                    <label for="name" class="h3">N.I.N.O</label>
-                </div>
-                <div class="col-xs-12 col-md-8">
-                    <input type="text" name="formData[][owner_ni_no]" class="form-control h3">
-                </div>
-            </div>
         </div>
         <div class="text-right">
-            <button type="submit" name="submit" class="btn btn-info">Update</button>
+            <button type="submit" class="btn btn-info">Update <img src="images/spin.svg" class="hide_spinner"></button>
         </div>
     </form>
 </main>

@@ -78,7 +78,14 @@ class SettingsBankModel extends BaseModel
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
 
-        echo self::$stmt->rowCount();
+        $affected_rows = self::$stmt->rowCount();
+
+        if ($affected_rows >= 0) {
+            echo json_encode(['success' => true, 'message' => 'Bank updated successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'something went wrong. Please try again!']);
+        }
+
     }
 
     public static function save($data)
@@ -124,6 +131,7 @@ class SettingsBankModel extends BaseModel
             self::$query = "INSERT  INTO bank_contact(bank_id, contact_name, telephone, fax, email) VALUES (
 :bank_id, :contact_name, :telephone, :fax, :email)";
 
+
             self::$query_data = [
                 'bank_id' => $bank_id,
                 'contact_name' => $data->contact_name,
@@ -152,7 +160,7 @@ class SettingsBankModel extends BaseModel
 
             $affected_rows = self::$stmt->rowCount();
 
-            if ($affected_rows > 0) {
+            if ($affected_rows >= 0) {
                 echo json_encode(['success' => true, 'message' => 'new bank saved successfully!']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'something went wrong. Please try again!']);
@@ -179,9 +187,6 @@ class SettingsBankModel extends BaseModel
         ];
         self::$stmt = self::$dbh->prepare(self::$query);
         self::$stmt->execute(self::$query_data);
-
-
-
     }
 
     public static function findAll()

@@ -30,12 +30,12 @@ class SettingsCustomerModel extends BaseModel
 
     public static function save($data)
     {
-
         self::$dbh->beginTransaction();
         try {
 
             self::$query = "INSERT INTO customer(user_id, name,  credit_limit, payment_due, payment_terms) 
 VALUES (:user_id, :name, :credit_limit, :payment_due, :payment_terms)";
+
 
             self::$stmt = self::$dbh->prepare(self::$query);
 
@@ -73,7 +73,7 @@ VALUES (:customer_id, :line1, :line2, :town, :city, :post_code, :country, :telep
             self::$stmt = self::$dbh->prepare(self::$query);
             self::$stmt->execute(self::$query_data);
 
-            if (self::$stmt->rowCount() > 0) {
+            if (self::$stmt->rowCount() >= 0) {
                 echo json_encode(['success' => true, 'message' => 'Customer added successfully']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Something went wrong! Please refresh your page.']);
@@ -111,7 +111,7 @@ VALUES (:customer_id, :line1, :line2, :town, :city, :post_code, :country, :telep
         self::$stmt->execute(self::$query_data);
 
 
-        if (self::$stmt->rowCount() > 0) {
+        if (self::$stmt->rowCount() >= 0) {
             echo json_encode(['success' => true, 'message' => 'Customer updated successfully!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh your page']);

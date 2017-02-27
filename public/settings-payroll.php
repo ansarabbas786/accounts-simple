@@ -73,7 +73,7 @@ LayoutHelper::subNavigation();
                             <td class="forname text-center" hidden><?= $employee->forname ?></td>
                             <td class="dob text-center" hidden><?= $employee->dob ?></td>
                             <td class="gender text-center" hidden><?= $employee->gender ?></td>
-                            <td class="line2 text-center" hidden><?= $employee->line1 ?></td>
+                            <td class="line1 text-center" hidden><?= $employee->line1 ?></td>
                             <td class="line2 text-center" hidden><?= $employee->line2 ?></td>
                             <td class="town text-center" hidden><?= $employee->town ?></td>
                             <td class="city text-center" hidden><?= $employee->city ?></td>
@@ -84,7 +84,7 @@ LayoutHelper::subNavigation();
                             <td class="bank-name text-center" hidden><?= $employee->bank_name ?></td>
                             <td class="acc-number text-center" hidden><?= $employee->acc_number ?></td>
                             <td class="sort-code text-center" hidden><?= $employee->sort_code ?></td>
-                            <td class="acc_name text-center" hidden><?= $employee->acc_name ?></td>
+                            <td class="acc-name text-center" hidden><?= $employee->acc_name ?></td>
                             <td class="employee-id text-center"><?= Helper::number_format($employee->employee_id, 5) ?></td>
                             <td class="surname text-left"><?= $employee->surname ?></td>
                             <td class="ni-number text-center"><?= $employee->ni_number ?></td>
@@ -176,11 +176,11 @@ LayoutHelper::subNavigation();
 
 
                                 <label for="mail" class="radio_label">MALE
-                                    <input type="radio" class="" checked value="m" id="mail" name="gender">
+                                    <input type="radio" class="male" checked value="m" id="male" name="gender">
                                 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                <label for="femail" class="radio_label">FEMALE
-                                    <input type="radio" class="" id="femail" value="f" name="gender">
+                                <label for="female" class="radio_label">FEMALE
+                                    <input type="radio" class="female" id="female" value="f" name="gender">
                                 </label>
 
                             </div>
@@ -409,7 +409,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="acc_name">
+                                <input type="text" class="form-control" id="acc_name" name="acc_name">
                             </div>
                         </div>
                     </div>
@@ -701,7 +701,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_number">ACCOUNT NUMBER</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_number" name="account_number">
+                                <input type="text" class="form-control" id="acc_number" name="acc_number">
                             </div>
                         </div>
                     </div>
@@ -728,7 +728,7 @@ LayoutHelper::subNavigation();
                                 <label for="account_name">ACCOUNT NAME</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" id="account_name" name="account_name">
+                                <input type="text" class="form-control" id="acc_name" name="acc_name">
                             </div>
                         </div>
                     </div>
@@ -750,14 +750,11 @@ LayoutHelper::subNavigation();
 ========================================-->
 
 
-
-
-
 <!--website footer starts here
 ==============================-->
 <footer class="container-fluid">
     <div class="row text-center">
-            <small>COPYRIGHT SIMPLE ACCOUNTS &copy; ALL RIGHTS RESERVED.</small>
+        <small>COPYRIGHT SIMPLE ACCOUNTS &copy; ALL RIGHTS RESERVED.</small>
     </div>
 </footer>
 <!--website footer ends here

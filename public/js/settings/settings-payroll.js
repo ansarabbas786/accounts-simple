@@ -68,7 +68,7 @@ $(function () {
         var form = $(this);
         var btn = $(this).find('button[type="submit"]');
         var formObj = this;
-     
+
         showSpiner(btn);
 
         $.ajax({
@@ -125,6 +125,135 @@ $(function () {
 
     });
 
+
+    /*=============================Start OF Edit LOGIC=================================*/
+
+    $edit_btn = '';
+
+    $("body").on("click", '.edit_btn', function (evt) {
+        evt.preventDefault();
+
+
+        $edit_btn = $(this);
+        var tr = $(this).parent().parent();
+        var form = $('#employee-update-form');
+
+        var surname= tr.find('td.surname').text();
+        var forname= tr.find('td.forname').text();
+        var credit_limit = tr.find('td.credit-limit').text();
+        var employee_id = tr.find('td.employee-id').text();
+        var payment_due = tr.find('td.payment-due').text();
+        var payment_terms = tr.find('td.payment-terms').text();
+        var gender = tr.find('td.gender').text();
+        var line1 = tr.find('td.line1').text();
+        var line2 = tr.find('td.line2').text();
+        var town = tr.find('td.town').text();
+        var city = tr.find('td.city').text();
+        var country = tr.find('td.country').text();
+        var email = tr.find('td.email').text();
+        var contact_name = tr.find('td.contact-name').text();
+        var company_name = tr.find('td.company-name').text();
+        var acc_name = tr.find('td.acc-name').text();
+        var acc_number = tr.find('td.acc-number').text();
+        var bank_name = tr.find('td.bank-name').text();
+        var acc_no = tr.find('td.acc-no').text();
+        var mobile = tr.find('td.mobile').text();
+        var post_code = tr.find('td.post-code').text();
+        var sort_code = tr.find('td.sort-code').text();
+        var telephone = tr.find('td.telephone').text();
+        var notes= tr.find('td.notes').text();
+        var ni_number= tr.find('td.ni-number').text();
+
+        if (gender == 'm'){
+           $('.male').removeProp('checked');
+        }
+
+
+        form.find('input[name="surname"]').val(surname);
+        form.find('input[name="forname"]').val(forname);
+        form.find('input[name="credit_limit"]').val(credit_limit);
+        form.find('input[name="employee_id"]').val(formatNumber(employee_id, 5));
+        form.find('input[name="payment_due"]').val(payment_due);
+        form.find('textarea[name="payment_terms"]').val(payment_terms);
+        form.find('input[name="line1"]').val(line1);
+        form.find('input[name="post_code"]').val(post_code);
+        form.find('input[name="sort_code"]').val(sort_code);
+        form.find('input[name="line2"]').val(line2);
+        form.find('input[name="town"]').val(town);
+        form.find('input[name="city"]').val(city);
+        form.find('input[name="country"]').val(country);
+        form.find('input[name="email"]').val(email);
+        form.find('input[name="company_name"]').val(company_name);
+        form.find('input[name="acc_name"]').val(acc_name);
+        form.find('input[name="contact_name"]').val(contact_name);
+        form.find('input[name="bank_name"]').val(bank_name);
+        form.find('input[name="acc_number"]').val(acc_number);
+        form.find('input[name="mobile"]').val(mobile);
+        form.find('textarea[name="notes"]').val(notes);
+        form.find('input[name="ni_number"]').val(ni_number);
+        form.find('input[name="telephone"]').val(telephone);
+
+        $("#payroll_edit_modal").modal("show");
+    });
+
+    $('#supplier_update_form').submit(function (evt) {
+        evt.preventDefault();
+
+        if (!$(this).valid()) {
+            return 0;
+        }
+
+        var form = $(this);
+        var btn = $(this).find('button[type="submit"]');
+        var formObj = this;
+        var tr = $edit_btn.parent().parent();
+
+        showSpiner(btn);
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (response) {
+
+                if (response.success) {
+
+                    tr.find('td.credit-limit').text($(formObj.credit_limit).val());
+                    tr.find('td.supplier-id').text($(formObj.supplier_id).val());
+                    tr.find('td.payment-due').text($(formObj.payment_due).val());
+                    tr.find('td.payment-terms').text($(formObj.payment_terms).val());
+                    tr.find('td.line1').text($(formObj.line1).val());
+                    tr.find('td.line2').text($(formObj.line2).val());
+                    tr.find('td.town').text($(formObj.town).val());
+                    tr.find('td.city').text($(formObj.city).val());
+                    tr.find('td.country').text($(formObj.country).val());
+                    tr.find('td.email').text($(formObj.email).val());
+                    tr.find('td.contact-name').text($(formObj.contact_name).val());
+                    tr.find('td.company-name').text($(formObj.company_name).val());
+                    tr.find('td.acc-name').text($(formObj.acc_name).val());
+                    tr.find('td.bank-name').text($(formObj.bank_name).val());
+                    tr.find('td.acc-no').text($(formObj.acc_no).val());
+                    tr.find('td.mobile').text($(formObj.mobile).val());
+                    tr.find('td.post-code').text($(formObj.post_code).val());
+                    tr.find('td.sort-code').text($(formObj.sort_code).val());
+                    tr.find('td.telephone').text($(formObj.telephone).val());
+                    showMessage(response.message);
+                    $('#supplier_edit_modal').modal('hide');
+                    form[0].reset();
+                } else {
+                    showMessage('Something went wrong please refresh your page!');
+                }
+            },
+            complete: function () {
+                hideSpinner(btn);
+            }
+        });
+    });
+
+
+    /*=======================================End of Updation Logic===========================*/
+
+
     /*================================END OF NEW BANK LOGIC====================================*/
 
 
@@ -133,9 +262,42 @@ $(function () {
         $('#payroll_edit_modal').modal("show");
     });
 
-    $('body').on("click", '.delete_btn', function (evt) {
+    /*=============================Start of deletion logic====================================*/
+
+    $('#confirm_delete_btn').on('click', function (evt) {
         evt.preventDefault();
-        $('#confirm_modal').modal("show");
+        $('#confirm_modal').modal('show');
+    });
+
+    $('#confirm_delete_form').submit(function (evt) {
+        evt.preventDefault();
+
+        var form = $(this);
+        var btn = $(this).find('button[type="submit"]');
+
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    delete_btn.parent().parent().remove();
+                    showMessage('<h2 class="text-danger">Supplier deleted.</h2>');
+                } else {
+                    showMessage('Error: Please refresh your page!', 'text-danger');
+                }
+            },
+            error: function (xhr, status, error) {
+                showMessage('Error: ' + error.message);
+            },
+            complete: function () {
+                hideSpinner(btn);
+                $('#confirm_modal').modal('hide');
+            }
+        });
+
+        showSpiner(btn);
     });
 
 

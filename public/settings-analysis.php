@@ -5,6 +5,7 @@ use App\Model\Settings\SettingsAnalysisModel;
 
 require_once "../vendor/autoload.php";
 
+
 LayoutHelper::head();
 LayoutHelper::css('css/setting-analysis.css');
 LayoutHelper::js('js/settings/settings-analysis.js');
@@ -79,8 +80,6 @@ LayoutHelper::subNavigation();
 </main>
 <!--website main content ends here
 ==============================-->
-
-
 
 
 <!--new modal starts here
