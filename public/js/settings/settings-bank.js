@@ -3,20 +3,47 @@ $(function () {
     /*================================START OF VALIDATION  LOGIC====================================*/
 
     var rules = {
-        acc_name: "required",
-        sort_code: "required",
-        acc_no: "required",
-        bank_name: "required",
-        start_balance: {
+        name: {
+            required: true,
+            maxlength: 50,
+        },
+        credit_limit: {
             required: true,
             number: true
         },
-        telephone: "required",
-        email: {
+        payment_due: {
             required: true,
-            email: true
+            number: true
+        },
+        payment_terms: {
+            maxlength: 100
+        },
+        line1: {maxlength: 50},
+        line2: {maxlength: 50},
+        town: {maxlength: 25},
+        city: {maxlength: 25},
+        post_code: {
+            regex: /^(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})$/,
+        },
+        country: {maxlength: 50},
+        fax: {maxlength: 11},
+        email: {email: true, required: true},
+        telephone: {maxlength: 11},
+        sort_code: {
+            regex_sort_code: /^\d{2}-\d{2}-\d{2}$/
         }
-    };
+    }
+
+    //added a validator method to add regex functionality
+    $.validator.addMethod("regex", function (value, element, regexpr) {
+            return regexpr.test(value);
+        },
+        "enter valid post code");
+    //added a validator method to add regex functionality
+    $.validator.addMethod("regex_sort_code", function (value, element, regexpr) {
+            return regexpr.test(value);
+        },
+        "enter valid sort code");
 
     $('#new_bank_form').validate({
         rules: rules,
@@ -213,7 +240,6 @@ $(function () {
                 if (response.success) {
 
                     $('#bank_new_modal').modal('hide');
-
 
                     var parent_tr = update_btn.parent().parent();
                     parent_tr.find('.acc-name').text($(formObj.acc_name).val());

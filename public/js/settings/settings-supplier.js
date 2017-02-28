@@ -29,6 +29,9 @@ $(function () {
         fax: {maxlength: 11},
         email: {email: true, required: true},
         telephone: {maxlength: 11},
+        sort_code: {
+            regex_sort_code: /^\d{2}-\d{2}-\d{2}$/
+        }
     }
 
     //added a validator method to add regex functionality
@@ -36,6 +39,11 @@ $(function () {
             return regexpr.test(value);
         },
         "enter valid post code");
+    //added a validator method to add regex functionality
+    $.validator.addMethod("regex_sort_code", function (value, element, regexpr) {
+            return regexpr.test(value);
+        },
+        "enter valid sort code");
 
 
     $('#new_supplier_form').validate({

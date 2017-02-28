@@ -71,7 +71,7 @@ LayoutHelper::subNavigation();
                         ?>
                         <tr>
                             <td class="forname text-center" hidden><?= $employee->forname ?></td>
-                            <td class="dob text-center" hidden><?= $employee->dob ?></td>
+                            <td class="dob text-center" hidden><?= date('d/m/Y', strtotime($employee->dob)) ?></td>
                             <td class="gender text-center" hidden><?= $employee->gender ?></td>
                             <td class="line1 text-center" hidden><?= $employee->line1 ?></td>
                             <td class="line2 text-center" hidden><?= $employee->line2 ?></td>
@@ -88,8 +88,8 @@ LayoutHelper::subNavigation();
                             <td class="employee-id text-center"><?= Helper::number_format($employee->employee_id, 5) ?></td>
                             <td class="surname text-left"><?= $employee->surname ?></td>
                             <td class="ni-number text-center"><?= $employee->ni_number ?></td>
-                            <td class="start-date text-center"><?= $employee->start_date ?></td>
-                            <td class="leaving-date text-center"><?= $employee->leaving_date ?></td>
+                            <td class="start-date text-center"><?= date('d/m/Y', strtotime($employee->start_date)) ?></td>
+                            <td class="leaving-date text-center"><?= date('d/m/Y', strtotime($employee->leaving_date)) ?></td>
                             <td class="text-center">
                                 <button data-toggle="modal" data-employeeid="<?= $employee->employee_id ?>"
                                         class="btn btn-primary edit_btn">EDIT
@@ -160,31 +160,24 @@ LayoutHelper::subNavigation();
                             <div class="col-xs-7">
 
                                 <input type="text" class="form-control date_input" name="dob"
-                                       placeholder="yyyy/mm/dd">
+                                       placeholder="dd/mm/yyyy">
                             </div>
-
                         </div>
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-
                         <div class="form-group">
                             <div class="col-xs-5">
                                 <label for="gender">GENDER</label>
                             </div>
                             <div class="col-xs-7">
-
-
                                 <label for="mail" class="radio_label">MALE
                                     <input type="radio" class="male" checked value="m" id="male" name="gender">
                                 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
                                 <label for="female" class="radio_label">FEMALE
                                     <input type="radio" class="female" id="female" value="f" name="gender">
                                 </label>
-
                             </div>
-
                         </div>
                     </div>
                     <!--second row ends here-->
@@ -311,7 +304,7 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
                                 <input type="text" class="form-control date_input" name="start_date"
-                                       placeholder="yyyy/mm/dd">
+                                       placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
@@ -479,7 +472,7 @@ LayoutHelper::subNavigation();
                             </div>
                             <div class="col-xs-7">
 
-                                <input type="text" class="form-control date_input" name="date_of_birth"
+                                <input type="text" class="form-control date_input" name="dob"
                                        placeholder="dd/mm/yyyy">
                             </div>
 
@@ -495,15 +488,13 @@ LayoutHelper::subNavigation();
                             <div class="col-xs-7">
 
                                 <label for="mail" class="radio_label">MALE
-                                    <input type="radio" class="" checked id="mail" name="vat_registered">
+                                    <input type="radio" class="male" value="m" checked id="mail" name="gender">
                                 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <label for="femail" class="radio_label">FEMALE
-                                    <input type="radio" class="" id="femail" name="vat_registered">
+                                    <input type="radio" class="female" value="f" id="femail" name="gender">
                                 </label>
-
                             </div>
-
                         </div>
                     </div>
                     <!--second row ends here-->

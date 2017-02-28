@@ -314,7 +314,7 @@ LayoutHelper::subNavigation();
                                 <label for="sort_code">SORT CODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="number" class="form-control" id="sort_code" name="sort_code">
+                                <input type="text" class="form-control" id="sort_code" name="sort_code">
                             </div>
                         </div>
                     </div>
@@ -578,7 +578,7 @@ LayoutHelper::subNavigation();
                                 <label for="sort_code">SORT CODE</label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="number" class="form-control" id="sort_code" name="sort_code">
+                                <input type="text" class="form-control" id="sort_code" name="sort_code">
                             </div>
                         </div>
                     </div>

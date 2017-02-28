@@ -1,107 +1,147 @@
 .row {
-  padding: 0px !important;
-  margin: 0px !important; }
+    padding: 0px !important;
+    margin: 0px !important;
+}
 
 .hero .row h1 span {
-  font-family: "raleway-semibold"; }
+    font-family: "raleway-semibold";
+}
+
+.btn {
+    margin: 10px 30px 10px 10px;
+}
 
 label.radio_label,
 input[type="radio"] {
-  margin-top: 10px; }
+    margin-top: 10px;
+}
 
 .navbar-default {
-  line-height: 50px;
-  border: none !important;
-  border-radius: 0px !important;
-  margin-top: -20px;
-  background-color: white !important;
-  z-index: 20 !important; }
-  .navbar-default .navbar-collapse {
-    background-color: white !important; }
-  .navbar-default ul {
+    line-height: 50px;
+    border: none !important;
+    border-radius: 0px !important;
+    margin-top: -20px;
+    background-color: white !important;
+    z-index: 20 !important;
+}
+
+.navbar-default .navbar-collapse {
+    background-color: white !important;
+}
+
+.navbar-default ul {
     list-style-type: none;
     color: black;
     margin-top: 0 !important;
     font-family: "raleway-semibold";
     font-size: 1.2em;
     z-index: 23 !important;
-    background-color: white; }
-    .navbar-default ul .active a {
-      background-color: #333333 !important;
-      color: white !important;
-      border-top: 1px solid white !important; }
-    .navbar-default ul li {
-      margin-right: 40px;
-      font-family: "raleway-semibold"; }
+    background-color: white;
+}
+
+.navbar-default ul .active a {
+    background-color: #333333 !important;
+    color: white !important;
+    border-top: 1px solid white !important;
+}
+
+.navbar-default ul li {
+    margin-right: 40px;
+    font-family: "raleway-semibold";
+}
 
 main {
-  padding-bottom: 50px; }
+    padding-bottom: 50px;
+}
 
 main .hdng > .col-xs-12 {
-  background-color: #333333 !important;
-  color: white !important;
-  margin: 50px 0; }
-  main .hdng > .col-xs-12 h3 {
-    font-family: "raleway-semibold"; }
+    background-color: #333333 !important;
+    color: white !important;
+    margin: 50px 0;
+}
+
+main .hdng > .col-xs-12 h3 {
+    font-family: "raleway-semibold";
+}
 
 main .row label {
-  font-weight: 600 !important;
-  font-size: 1em;
-  position: relative;
-  top: 10px; }
+    font-weight: 600 !important;
+    font-size: 1em;
+    position: relative;
+    top: 10px;
+}
 
 label[for="logo"] {
-  position: relative;
-  top: 10px; }
+    position: relative;
+    top: 10px;
+}
 
 main .year h3 {
-  font-family: "raleway-semibold";
-  font-size: 30px !important; }
+    font-family: "raleway-semibold";
+    font-size: 30px !important;
+}
 
 main .row input {
-  border: 1px solid black;
-  border-radius: 0px !important; }
+    border: 1px solid black;
+    border-radius: 0px !important;
+}
 
 #radio {
-  display: inline;
-  width: 25px !important; }
+    display: inline;
+    width: 25px !important;
+}
 
 .radio_label {
-  position: relative;
-  top: 15px; }
+    position: relative;
+    top: 15px;
+}
 
 .imgg img {
-  height: 300px;
-  width: 300px;
-  margin: 0 auto; }
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
 
 #file {
-  margin: 0 auto; }
+    margin: 0 auto;
+}
 
 #vat_scheme_dropdown {
-  top: 20px; }
+    top: 20px;
+}
 
 #vat_scheme_dropdown > li > a {
-  border-radius: 0;
-  border: 1px solid black; }
+    border-radius: 0;
+    border: 1px solid black;
+}
 
 .vat_hidden {
-  display: none; }
+    display: none;
+}
 
 @media (max-width: 1200px) {
-  .navbar-default {
-    font-size: 0.8 em; } }
+    .navbar-default {
+        font-size: 0.8em;
+    }
+}
+
 @media (max-width: 469px) {
-  .hero .row h1 {
-    font-size: 2em !important; }
+    .hero .row h1 {
+        font-size: 2em !important;
+    }
+
     .hero .row h1 span {
-      font-weight: bold;
-      font-size: 0.7em !important; }
+        font-weight: bold;
+        font-size: 0.7em !important;
+    }
 
-  h3 {
-    font-size: 1.5em !important; }
+    h3 {
+        font-size: 1.5em !important;
+    }
 
-  .h3 {
-    font-size: 1.3em; } }
+    .h3 {
+        font-size: 1.3em;
+    }
+}
 
 /*# sourceMappingURL=settings-company.css.map */

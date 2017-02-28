@@ -36,7 +36,38 @@ class SettingsPayrollModel extends BaseModel
 
     public static function update($data)
     {
-        exit('you are here lol!');
+        $user_id = 1;
+
+        self::openConnection();
+
+        $tables = ['employee', 'employee_address', 'employee_bank_details', 'employee_work_info'];
+
+
+        $extra_data = [
+            'user_id' => $user_id,
+            'employee_id' => (int)$data->employee_id,
+        ];
+
+        $data->start_date = Helper::to_mysql_date($data->start_date);
+        $data->leaving_date = Helper::to_mysql_date($data->leaving_date);
+        $data->dob = Helper::to_mysql_date($data->dob);
+        self::$query_data = array_merge((array)$data, $extra_data);
+
+        //exclude the customer_id from the query parameters
+        unset($data->employee_id);
+        self::$query = Helper::build_update_query($tables, $data);
+
+
+        self::$stmt = self::$dbh->prepare(self::$query);
+        self::$stmt->execute(self::$query_data);
+
+
+        if (self::$stmt->rowCount() >= 0) {
+            echo json_encode(['success' => true, 'message' => 'Employee updated successfully!']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Something went wrong please refresh your page']);
+        }
+
     }
 
     public static function save($data)

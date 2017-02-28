@@ -1,5 +1,67 @@
 $(function () {
 
+    /*================================START OF Validation LOGIC====================================*/
+
+    var rules = {
+        name: {
+            required: true,
+            maxlength: 50,
+        },
+        credit_limit: {
+            required: true,
+            number: true
+        },
+        payment_due: {
+            required: true,
+            number: true
+        },
+        payment_terms: {
+            maxlength: 100
+        },
+        line1: {maxlength: 50},
+        line2: {maxlength: 50},
+        town: {maxlength: 25},
+        city: {maxlength: 25},
+        logo: {
+            required: true,
+            extension: 'jpg|png|gif|jpeg'
+        },
+        post_code: {
+            regex: /^(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})$/,
+        },
+        country: {maxlength: 50},
+        fax: {maxlength: 11},
+        email: {email: true, required: true},
+        website: {url: true},
+        registration_no: {maxlength: 8},
+        acc_name: {maxlength: 50},
+        bank_name: {maxlength: 20},
+        'ni_number[]': {
+            regex_ni: /^[a-zA-Z]{2}[\d]{6}[a-zA-Z]$/,
+        },
+
+        telephone: {maxlength: 11},
+        mobile: {maxlength: 11},
+
+    }
+
+    //added a validator method to add regex functionality
+    $.validator.addMethod("regex", function (value, element, regexpr) {
+            return regexpr.test(value);
+        },
+        "enter valid post code");
+
+    //added a validator method to add regex functionality
+    $.validator.addMethod("regex_ni", function (value, element, regexpr) {
+            return regexpr.test(value);
+        },
+        "enter valid N.I.N.O");
+
+
+    $('#company-update-form').validate({
+        rules: rules
+    });
+
     /**
      * Start of company update logic here
      */
@@ -7,9 +69,10 @@ $(function () {
     $('#company-update-form').submit(function (evt) {
         evt.preventDefault();
 
-        /*   if (!$(this).valid()) {
-         return;
-         }*/
+        if (!$(this).valid()) {
+            return false;
+        }
+
 
         var form = $('#company-update-form');
         var btn = $(this).find('button[type="submit"]');

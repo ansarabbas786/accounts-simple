@@ -28,10 +28,10 @@ $(function () {
         country: {maxlength: 50},
         fax: {maxlength: 11},
         email: {email: true, required: true},
-        website: {url: true},
         telephone: {maxlength: 11},
-        mobile: {maxlength: 11},
-
+        sort_code: {
+            regex_sort_code: /^\d{2}-\d{2}-\d{2}$/
+        }
     }
 
     //added a validator method to add regex functionality
@@ -39,12 +39,18 @@ $(function () {
             return regexpr.test(value);
         },
         "enter valid post code");
+    //added a validator method to add regex functionality
+    $.validator.addMethod("regex_sort_code", function (value, element, regexpr) {
+            return regexpr.test(value);
+        },
+        "enter valid sort code");
 
 
-    $('#employee_new_form').validate({
+    $('#employee-update-form').validate({
         rules: rules
     });
-    $('#employee-update-form').validate({
+
+    $('#employee_new_form').validate({
         rules: rules
     });
 
@@ -138,12 +144,15 @@ $(function () {
         var tr = $(this).parent().parent();
         var form = $('#employee-update-form');
 
-        var surname= tr.find('td.surname').text();
-        var forname= tr.find('td.forname').text();
+        var surname = tr.find('td.surname').text();
+        var forname = tr.find('td.forname').text();
         var credit_limit = tr.find('td.credit-limit').text();
         var employee_id = tr.find('td.employee-id').text();
         var payment_due = tr.find('td.payment-due').text();
         var payment_terms = tr.find('td.payment-terms').text();
+        var dob = tr.find('td.dob').text();
+        var start_date = tr.find('td.start-date').text();
+        var leaving_date = tr.find('td.leaving-date').text();
         var gender = tr.find('td.gender').text();
         var line1 = tr.find('td.line1').text();
         var line2 = tr.find('td.line2').text();
@@ -161,17 +170,18 @@ $(function () {
         var post_code = tr.find('td.post-code').text();
         var sort_code = tr.find('td.sort-code').text();
         var telephone = tr.find('td.telephone').text();
-        var notes= tr.find('td.notes').text();
-        var ni_number= tr.find('td.ni-number').text();
+        var notes = tr.find('td.notes').text();
+        var ni_number = tr.find('td.ni-number').text();
 
-        if (gender == 'm'){
-           $('.male').removeProp('checked');
+        if (gender == 'f') {
+            $('.male').prop('checked', false);
+            $('.female').prop('checked', true);
         }
 
 
         form.find('input[name="surname"]').val(surname);
         form.find('input[name="forname"]').val(forname);
-        form.find('input[name="credit_limit"]').val(credit_limit);
+        form.find('input[name="dob"]').val(dob);
         form.find('input[name="employee_id"]').val(formatNumber(employee_id, 5));
         form.find('input[name="payment_due"]').val(payment_due);
         form.find('textarea[name="payment_terms"]').val(payment_terms);
@@ -192,12 +202,15 @@ $(function () {
         form.find('textarea[name="notes"]').val(notes);
         form.find('input[name="ni_number"]').val(ni_number);
         form.find('input[name="telephone"]').val(telephone);
+        form.find('input[name="start_date"]').val(start_date);
+        form.find('input[name="leaving_date"]').val(leaving_date);
 
         $("#payroll_edit_modal").modal("show");
     });
 
-    $('#supplier_update_form').submit(function (evt) {
+    $('#employee-update-form').submit(function (evt) {
         evt.preventDefault();
+
 
         if (!$(this).valid()) {
             return 0;
@@ -218,34 +231,45 @@ $(function () {
 
                 if (response.success) {
 
-                    tr.find('td.credit-limit').text($(formObj.credit_limit).val());
-                    tr.find('td.supplier-id').text($(formObj.supplier_id).val());
-                    tr.find('td.payment-due').text($(formObj.payment_due).val());
-                    tr.find('td.payment-terms').text($(formObj.payment_terms).val());
+                    tr.find('td.surname').text($(formObj.surname).val());
+                    tr.find('td.forname').text($(formObj.forname).val());
+                    tr.find('td.employee-id').text($(formObj.employee_id).val());
+
+                    //TODO: gender & dob
+                    tr.find('td.dob').text($(formObj.dob).val());
+                    tr.find('td.gender').text($(formObj.gender).val());
+
+
                     tr.find('td.line1').text($(formObj.line1).val());
                     tr.find('td.line2').text($(formObj.line2).val());
                     tr.find('td.town').text($(formObj.town).val());
                     tr.find('td.city').text($(formObj.city).val());
-                    tr.find('td.country').text($(formObj.country).val());
-                    tr.find('td.email').text($(formObj.email).val());
-                    tr.find('td.contact-name').text($(formObj.contact_name).val());
-                    tr.find('td.company-name').text($(formObj.company_name).val());
-                    tr.find('td.acc-name').text($(formObj.acc_name).val());
-                    tr.find('td.bank-name').text($(formObj.bank_name).val());
-                    tr.find('td.acc-no').text($(formObj.acc_no).val());
-                    tr.find('td.mobile').text($(formObj.mobile).val());
                     tr.find('td.post-code').text($(formObj.post_code).val());
-                    tr.find('td.sort-code').text($(formObj.sort_code).val());
                     tr.find('td.telephone').text($(formObj.telephone).val());
+                    tr.find('td.email').text($(formObj.email).val());
+
+                    tr.find('td.ni_no').text($(formObj.ni_number).val());
+
+                    //TODO: start date end date :)
+                    tr.find('td.start-date').text($(formObj.start_date).val());
+                    tr.find('td.leaving-date').text($(formObj.leaving_date).val());
+
+                    tr.find('td.notes').text($(formObj.notes).val());
+                    tr.find('td.bank-name').text($(formObj.bank_name).val());
+                    tr.find('td.acc-name').text($(formObj.acc_name).val());
+                    tr.find('td.acc-number').text($(formObj.acc_number).val());
+                    tr.find('td.sort-code').text($(formObj.sort_code).val());
+
                     showMessage(response.message);
-                    $('#supplier_edit_modal').modal('hide');
-                    form[0].reset();
+                    $('#payroll_edit_modal').modal('hide');
+                    form.trigger('reset');
                 } else {
                     showMessage('Something went wrong please refresh your page!');
                 }
             },
             complete: function () {
                 hideSpinner(btn);
+                $('#payroll_edit_modal').modal('hide');
             }
         });
     });
@@ -264,9 +288,16 @@ $(function () {
 
     /*=============================Start of deletion logic====================================*/
 
-    $('#confirm_delete_btn').on('click', function (evt) {
+    $('.delete_btn').on('click', function (evt) {
         evt.preventDefault();
-        $('#confirm_modal').modal('show');
+
+        delete_btn = $(this);
+
+        var employee_id = $(this).data('id');
+
+        $('#confirm_delete_form #id').val(employee_id);
+
+        $('#confirm_modal').modal("show");
     });
 
     $('#confirm_delete_form').submit(function (evt) {

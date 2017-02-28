@@ -40,15 +40,16 @@ LayoutHelper::subNavigation();
     $company = SettingsCompanyModel::findAll();
     ?>
 
-    <form action="routes.php?action=update" enctype="multipart/form-data" id="company-update-form" method="post" class="form-horizontal company_form">
+    <form action="routes.php?action=update" enctype="multipart/form-data" id="company-update-form" method="post"
+          class="form-horizontal company_form">
         <div class="row">
             <div class="col-xs-12">
                 <div class="col-xs-12 col-sm-2 col-md-2">
                     <label for="name" class="h3">NAME</label>
                 </div>
-                <div class="col-xs-12 col-sm-10 col-md-10">
-                    <input type="text" value="<?= $company->name ?>" id="name" name="name"
-                           class="form-control h3 field_adjust">
+                <div class="col-xs-12 col-sm-10 col-md-10 field_adjust">
+                    <input type="text" value="<?= isset($company->name) ? $company->name : '' ?>" id="name" name="name"
+                           class="form-control h3 ">
                 </div>
             </div>
 
@@ -58,7 +59,8 @@ LayoutHelper::subNavigation();
                     <label for="email" class="h3">EMAIL</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="email" value="<?= $company->email ?>" class="form-control h3">
+                    <input type="text" name="email" value="<?= isset($company->email) ? $company->email : '' ?>"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -67,7 +69,8 @@ LayoutHelper::subNavigation();
                     <label for="telephone" class="h3">TELEPHONE</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="telephone" value="<?= $company->telephone ?>" class="form-control h3">
+                    <input type="text" name="telephone"
+                           value="<?= isset($company->telephone) ? $company->telephone : '' ?>" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -75,7 +78,8 @@ LayoutHelper::subNavigation();
                     <label for="fax" class="h3">FAX</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="fax" value="<?= $company->fax ?>" class="form-control h3">
+                    <input type="text" name="fax" value="<?= isset($company->fax) ? $company->fax : '' ?>"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -84,7 +88,8 @@ LayoutHelper::subNavigation();
                     <label for="website" class="h3">WEBSITE</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="website" value="<?= $company->website ?>" name="website"
+                    <input type="text" id="website" value="<?= isset($company->website) ? $company->website : '' ?>"
+                           name="website"
                            class="form-control h3">
                 </div>
             </div>
@@ -102,7 +107,8 @@ LayoutHelper::subNavigation();
                     <label for="address_line1" class="h3">LINE 1</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="address_line1" value="<?= $company->line1 ?>" name="line1"
+                    <input type="text" id="address_line1" value="<?= isset($company->line1) ? $company->line1 : '' ?>"
+                           name="line1"
                            class="form-control h3">
                 </div>
             </div>
@@ -112,7 +118,8 @@ LayoutHelper::subNavigation();
                     <label for="address_line2" class="h3">LINE 2</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="address_line2" name="line2" value="<?= $company->line2 ?>"
+                    <input type="text" id="address_line2" name="line2"
+                           value="<?= isset($company->line2) ? $company->line2 : '' ?>"
                            class="form-control h3">
                 </div>
             </div>
@@ -122,7 +129,8 @@ LayoutHelper::subNavigation();
                     <label for="town" class="h3">TOWN</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" id="town" value="<?= $company->town ?>" name="town" class="form-control h3">
+                    <input type="text" id="town" value="<?= isset($company->town) ? $company->town : '' ?>" name="town"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -131,7 +139,8 @@ LayoutHelper::subNavigation();
                     <label for="city" class="h3">CITY</label>
                 </div>
                 <divj class="col-xs-12 col-sm-7">
-                    <input type="text" id="city" name="city" value="<?= $company->city ?>" class="form-control h3">
+                    <input type="text" id="city" name="city" value="<?= isset($company->city) ? $company->city : '' ?>"
+                           class="form-control h3">
             </div>
         </div>
 
@@ -141,7 +150,8 @@ LayoutHelper::subNavigation();
                 <label for="postcode" class="h3">POSTCODE</label>
             </div>
             <div class="col-xs-12 col-sm-7">
-                <input type="text" id="postcode" name="post_code" value="<?= $company->post_code ?>"
+                <input type="text" id="postcode" name="post_code"
+                       value="<?= isset($company->post_code) ? $company->post_code : '' ?>"
                        class="form-control h3">
             </div>
         </div>
@@ -151,7 +161,8 @@ LayoutHelper::subNavigation();
                 <label for="country" class="h3">COUNTRY</label>
             </div>
             <div class="col-xs-12 col-sm-7">
-                <input type="text" id="country" name="country" class="form-control h3" value="<?= $company->country ?>">
+                <input type="text" id="country" name="country" class="form-control h3"
+                       value="<?= isset($company->country) ? $company->country : '' ?>">
             </div>
         </div>
 
@@ -171,7 +182,8 @@ LayoutHelper::subNavigation();
         <!--      IMAGE     -->
         <!--           =======-->
         <div class="col-xs-12 imgg">
-            <img src="<?= $company->logo_path ?>" alt="" class="img-responsive business_logo">
+            <img src="<?= isset($company->logo_path) ? $company->logo_path : 'images/user_img.jpg' ?>" alt=""
+                 class="img-responsive business_logo">
         </div>
         <!--            IMAGE========
               ===========================
@@ -206,7 +218,7 @@ LayoutHelper::subNavigation();
                 <div class="col-xs-12 col-sm-7">
                     <input type="text" class="form-control h3 date_input" name="start_date"
                            placeholder="dd/mm/yyyy"
-                           value="<?= date('d/m/Y', strtotime($company->start_date)) ?>">
+                           value="<?= isset($company->start_date) ? date('d/m/Y', strtotime($company->start_date)) : '' ?>">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -216,7 +228,7 @@ LayoutHelper::subNavigation();
                 <div class="col-xs-12 col-sm-7">
                     <input type="text" class="form-control h3 date_input" name="end_date"
                            placeholder="dd/mm/yyyy"
-                           value="<?= date('d/m/Y', strtotime($company->end_date)) ?>">
+                           value="<?= isset($company->end_date) ? date('d/m/Y', strtotime($company->end_date)) : '' ?>">
                 </div>
             </div>
 
@@ -226,7 +238,8 @@ LayoutHelper::subNavigation();
                     <label for="registration_number" class="h3">COMPANY REG. NO.</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" class="form-control h3" value="<?= $company->registration_no ?>"
+                    <input type="text" class="form-control h3"
+                           value="<?= isset($company->registration_no) ? $company->registration_no : '' ?>"
                            name="registration_no">
                 </div>
             </div>
@@ -235,7 +248,8 @@ LayoutHelper::subNavigation();
                     <label for="tax_ref" class="h3">UNIQUE TAX REF.</label>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    <input type="text" name="unique_tax_ref" value="<?= $company->unique_tax_ref ?>"
+                    <input type="text" name="unique_tax_ref"
+                           value="<?= isset($company->unique_tax_ref) ? $company->unique_tax_ref : '' ?>"
                            class="form-control h3">
                 </div>
             </div>
@@ -284,7 +298,6 @@ LayoutHelper::subNavigation();
                         <ul id="vat_scheme_dropdown" class="dropdown_parent">
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
                                             class="glyphicon glyphicon-arrow-down"></span> </a>
-
                                 <ul class="dropdown-menu">
                                     <li>VAT Cash Accounting</li>
                                     <li>Standard VAT</li>
@@ -312,7 +325,8 @@ LayoutHelper::subNavigation();
                     <label for="start-date" class="h3">ACCOUNT NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="acc_name" value="<?= $company->acc_name ?>" class="form-control h3">
+                    <input type="text" name="acc_name"
+                           value="<?= isset($company->acc_name) ? $company->acc_name : '' ?>" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -320,7 +334,9 @@ LayoutHelper::subNavigation();
                     <label for="end-date" class="h3">ACCOUNT NUMBER</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="acc_number" value="<?= $company->acc_number ?>" class="form-control h3">
+                    <input type="text" name="acc_number"
+                           value="<?= isset($company->acc_number) ? $company->acc_number : '' ?>"
+                           class="form-control h3">
                 </div>
             </div>
 
@@ -329,7 +345,8 @@ LayoutHelper::subNavigation();
                     <label for="start-date" class="h3">SORT CODE</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="sort_code" value="<?= $company->sort_code ?>" class="form-control h3">
+                    <input type="text" name="sort_code"
+                           value="<?= isset($company->sort_code) ? $company->sort_code : '' ?>" class="form-control h3">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -337,7 +354,8 @@ LayoutHelper::subNavigation();
                     <label for="end-date" class="h3">BANK NAME</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                    <input type="text" name="bank_name" value="<?= $company->bank_name ?>" class="form-control h3">
+                    <input type="text" name="bank_name"
+                           value="<?= isset($company->bank_name) ? $company->bank_name : '' ?>" class="form-control h3">
                 </div>
             </div>
         </div>
@@ -369,7 +387,7 @@ LayoutHelper::subNavigation();
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <input type="text" name="dob[]"
-                               value="<?= date('d/m/Y', strtotime($owner->dob)) ?>"
+                               value="<?= !isset($owner->dob) ? date('d/m/Y', strtotime($owner->dob)) : '' ?>"
                                class="form-control h3 date_input"
                                placeholder="dd/mm/yyyy">
                     </div>

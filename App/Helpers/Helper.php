@@ -70,8 +70,7 @@ class Helper
         return $query_args;
     }
 
-    public
-    static function build_where_clause(array $tables)
+    public static function build_where_clause(array $tables)
     {
         $where_clause = '';
 
@@ -102,6 +101,7 @@ class Helper
 
     public static function to_mysql_date($date)
     {
+        $date = str_replace('/', '-', $date);
         $date = strtotime($date);
         return date('Y-m-d', $date);
     }
